@@ -22,18 +22,18 @@
 #################################
 # except for the folder
 !/zjazd8_09_01_2021/
-# ignore all in that folder
+# ignore all files in /zjazd8_09_01_2021/
 /zjazd8_09_01_2021/*
-# except for
-!/zjazd8_09_01_2021/my-app
+# except for README.md and my-app/
 !/zjazd8_09_01_2021/README.md
-# ignore all in the subfolder my-app/
+!/zjazd8_09_01_2021/my-app/
+# ignore all files in my-app/
 /zjazd8_09_01_2021/my-app/*
-# except for the subfolder src/
+# except for src/
 !/zjazd8_09_01_2021/my-app/src
-# ignore all in the src/
+# ignore all files in src/
 /zjazd8_09_01_2021/my-app/src/*
-# except /App.js and App.css
-/zjazd8_09_01_2021/my-app/src/App.js
-/zjazd8_09_01_2021/my-app/src/App.css
+# except for App.js and App.css
+!/zjazd8_09_01_2021/my-app/src/App.js
+!/zjazd8_09_01_2021/my-app/src/App.css
 #################################
