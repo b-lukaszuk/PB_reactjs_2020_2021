@@ -1,0 +1,39 @@
+# ignore all in this folder
+/*
+
+# except for the files
+!.gitignore
+!README.txt
+
+#################################
+### settings for ###
+### zjazd5_26_11_2020_pd/ ###
+#################################
+# except for the folder
+!/zjazd5_26_11_2020_pd/
+#################################
+
+
+# */ - ignore, ! - except for
+
+#################################
+### settings for ###
+### zjazd8_09_01_2021/ ###
+#################################
+# except for the folder
+!/zjazd8_09_01_2021/
+# ignore all in that folder
+/zjazd8_09_01_2021/*
+# except for
+!/zjazd8_09_01_2021/my-app
+!/zjazd8_09_01_2021/README.md
+# ignore all in the subfolder my-app/
+/zjazd8_09_01_2021/my-app/*
+# except for the subfolder src/
+!/zjazd8_09_01_2021/my-app/src
+# ignore all in the src/
+/zjazd8_09_01_2021/my-app/src/*
+# except /App.js and App.css
+/zjazd8_09_01_2021/my-app/src/App.js
+/zjazd8_09_01_2021/my-app/src/App.css
+#################################
