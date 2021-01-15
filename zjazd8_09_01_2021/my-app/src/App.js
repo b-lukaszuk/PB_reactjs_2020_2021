@@ -21,6 +21,7 @@ class App extends React.Component {
     this.toggleDone = this.toggleDone.bind(this);
     this.updateTaskToAdd = this.updateTaskToAdd.bind(this);
     this.addTaskToList = this.addTaskToList.bind(this);
+    this.remTaskFromList = this.remTaskFromList.bind(this);
   }
 
   /**
@@ -70,6 +71,19 @@ class App extends React.Component {
     }
   }
 
+  /**
+   * usuwa dany task z listy todos-ow
+   * @param {string} taskDescToRemove - opis zad/tasku (taskDesc sa unikalne)
+   * zmienia todos-y w statcie app.js
+   */
+  remTaskFromList(taskDescToRemove) {
+    this.setState({
+      todos: this.state.todos.filter((item) => {
+        return item.taskDesc !== taskDescToRemove;
+      }),
+    });
+  }
+
   render = () => {
     return (
       <div>
@@ -80,7 +94,11 @@ class App extends React.Component {
           onClick={this.addTaskToList}
         />
         <br />
-        <TodoList todos={this.state.todos} toggleDone={this.toggleDone} />
+        <TodoList
+          todos={this.state.todos}
+          toggleDone={this.toggleDone}
+          onClick={this.remTaskFromList}
+        />
       </div>
     );
   };

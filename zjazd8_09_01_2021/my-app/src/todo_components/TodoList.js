@@ -13,6 +13,7 @@ class TodoList extends React.Component {
         key={item.taskDesc}
         item={item}
         onChange={this.props.toggleDone}
+        onClick={this.props.onClick}
       />
     );
   }

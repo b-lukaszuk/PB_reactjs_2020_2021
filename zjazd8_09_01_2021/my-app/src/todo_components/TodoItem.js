@@ -18,6 +18,8 @@ class TodoItem extends React.Component {
           checked={isDone}
           onChange={() => this.props.onChange(taskDesc)}
         />
+        &nbsp;{" "}
+        <button onClick={() => this.props.onClick(taskDesc)}>remove</button>
       </div>
     );
   }
