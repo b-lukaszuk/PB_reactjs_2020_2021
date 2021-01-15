@@ -7,16 +7,16 @@ class TodoItem extends React.Component {
   }
 
   render() {
-    const task = this.props.item.taskDesc;
+    const taskDesc = this.props.item.taskDesc;
     const isDone = this.props.item.done;
     return (
       <div>
-        <span>{task}</span> &nbsp;
+        <span>{taskDesc}</span> &nbsp;
         <input
           name=""
           type="checkbox"
           checked={isDone}
-          onChange={() => this.props.onChange()}
+          onChange={() => this.props.onChange(taskDesc)}
         />
       </div>
     );

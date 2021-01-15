@@ -23,16 +23,34 @@ class App extends React.Component {
     this.addTaskToList = this.addTaskToList.bind(this);
   }
 
-  toggleDone() {
-    console.log("do skonczenia");
+  /**
+   * zmienia stan (done) danego taska
+   * @param {string} taskDescToToggle - opis zad/tasku (taskDesc sa unikalne)
+   * @return {Array<{Object}>} tab ob {taskDesc: "costam", done: true|false}
+   */
+  toggleDone(taskDescToToggle) {
+    this.setState({
+      todos: this.state.todos.map((item) => {
+        if (item.taskDesc === taskDescToToggle) {
+          return { taskDesc: taskDescToToggle, done: !item.done };
+        } else {
+          return item;
+        }
+      }),
+    });
   }
 
+  /**
+   * updateuje pole z nazwa taska wpisana przez uzytkownika
+   * @param {event} e - event triggerowany przez zmiane pola input
+   * wstawi
+   */
   updateTaskToAdd(e) {
     this.setState({ taskToAdd: e.target.value });
   }
 
   addTaskToList(newTaskDesc) {
-    // no dupl task descriptions allowed
+    // no duplicated tasks descriptions allowed to add
     if (
       Boolean(
         this.state.todos.find((item) => {
@@ -42,6 +60,9 @@ class App extends React.Component {
     ) {
       alert("the task is already on the list");
       this.setState({ taskToAdd: "" });
+    } else if (newTaskDesc === "") {
+      // no empty fields allowed to add
+      alert("please provide task description");
     } else {
       this.setState({
         todos: [...this.state.todos, { taskDesc: newTaskDesc, done: false }],
