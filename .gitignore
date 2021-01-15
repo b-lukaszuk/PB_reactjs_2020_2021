@@ -33,7 +33,8 @@
 !/zjazd8_09_01_2021/my-app/src
 # ignore all files in src/
 /zjazd8_09_01_2021/my-app/src/*
-# except for App.js and App.css
+# except for App.js, App.css, and todo_components/
 !/zjazd8_09_01_2021/my-app/src/App.js
 !/zjazd8_09_01_2021/my-app/src/App.css
+!/zjazd8_09_01_2021/my-app/src/todo_components/
 #################################
