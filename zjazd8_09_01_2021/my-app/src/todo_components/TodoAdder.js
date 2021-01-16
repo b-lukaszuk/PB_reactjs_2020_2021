@@ -11,6 +11,7 @@ class TodoAdder extends React.Component {
       <div>
         <input
           name=""
+          placeholder="add todo..."
           type="text"
           value={this.props.value}
           onChange={(e) => this.props.onChangeInput(e)}
