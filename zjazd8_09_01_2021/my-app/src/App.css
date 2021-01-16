@@ -2,3 +2,11 @@
   text-align: center;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
+input[type="checkbox"]:hover {
+    cursor: pointer;
+}
+

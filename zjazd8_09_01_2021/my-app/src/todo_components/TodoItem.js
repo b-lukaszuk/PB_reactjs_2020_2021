@@ -10,17 +10,23 @@ class TodoItem extends React.Component {
     const taskDesc = this.props.item.taskDesc;
     const isDone = this.props.item.done;
     return (
-      <div>
-        <span>{taskDesc}</span> &nbsp;
-        <input
-          name=""
-          type="checkbox"
-          checked={isDone}
-          onChange={() => this.props.onChange(taskDesc)}
-        />
-        &nbsp;{" "}
-        <button onClick={() => this.props.onClick(taskDesc)}>remove</button>
-      </div>
+      // wstawia do tbody, wiec produkuje td
+      <tr>
+        <td className="taskDesc">{taskDesc}</td>
+        <td className="status">
+          <input
+            name=""
+            type="checkbox"
+            checked={isDone}
+            onChange={() => this.props.toggleDone(taskDesc)}
+          />
+        </td>
+        <td className="remBut">
+          <button onClick={() => this.props.onClickButton(taskDesc)}>
+            remove
+          </button>
+        </td>
+      </tr>
     );
   }
 }

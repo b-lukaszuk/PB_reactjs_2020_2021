@@ -1,4 +1,5 @@
 import React from "react";
+import "./TodoList.css";
 import TodoItem from "./TodoItem";
 
 class TodoList extends React.Component {
@@ -7,13 +8,18 @@ class TodoList extends React.Component {
     console.log("TodoList constructor");
   }
 
+  /**
+   * zwraca komponent TodoItem
+   * @param {Object} item - task postaci {taskDesc: "costam", done: true|false}
+   * @return komponent TodoItem
+   */
   newListItem(item) {
     return (
       <TodoItem
         key={item.taskDesc}
         item={item}
-        onChange={this.props.toggleDone}
-        onClick={this.props.onClick}
+        toggleDone={this.props.toggleDone}
+        onClickButton={this.props.onClickButton}
       />
     );
   }
@@ -22,9 +28,21 @@ class TodoList extends React.Component {
     const todos = this.props.todos;
     return (
       <div>
-        {todos.map((item) => {
-          return this.newListItem(item);
-        })}
+        {/* tablica, celem lepszego wyrownania elementow */}
+        <table>
+          <thead>
+            <tr>
+              <th className="taskDesc">task</th>
+              <th className="status">done?</th>
+              <th className="remBut">remove from list</th>
+            </tr>
+          </thead>
+          <tbody>
+            {todos.map((item) => {
+              return this.newListItem(item);
+            })}
+          </tbody>
+        </table>
         <br />
       </div>
     );

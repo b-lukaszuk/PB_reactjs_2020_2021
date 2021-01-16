@@ -1,0 +1,32 @@
+table {
+    table-layout: fixed ;
+    width: 50%;
+}
+
+thead {
+    text-align: left;
+}
+
+td.taskDesc {
+    width: 50%;
+}
+
+td.status {
+    width: 20%;
+}
+
+td.remBut {
+    width: 30%;
+}
+
+th.taskDesc {
+    width: 50%;
+}
+
+th.status {
+    width: 20%;
+}
+
+th.remBut {
+    width: 30%;
+}
