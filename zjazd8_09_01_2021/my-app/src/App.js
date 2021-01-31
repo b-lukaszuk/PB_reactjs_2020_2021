@@ -2,6 +2,8 @@ import "./App.css";
 import React from "react";
 import TodoList from "./todo_components/TodoList";
 import TodoAdder from "./todo_components/TodoAdder";
+import TodoSorter from "./todo_components/TodoSorter";
+import TodoFilter from "./todo_components/TodoFilter";
 
 class App extends React.Component {
   constructor(props) {
@@ -15,14 +17,41 @@ class App extends React.Component {
         { taskDesc: "washing", done: true },
       ],
       taskToAdd: "",
-    };
-
-    // This binding is necessary to make `this` work in the callback
+      sortOrder: "A to Z",
+      showDone: true,
+      showPending: true,
+    }; // This binding is necessary to make `this` work in the callback
     this.toggleDone = this.toggleDone.bind(this);
     this.updateTaskToAdd = this.updateTaskToAdd.bind(this);
     this.addTaskToList = this.addTaskToList.bind(this);
     this.remTaskFromList = this.remTaskFromList.bind(this);
     this.remAllTasks = this.remAllTasks.bind(this);
+    this.sortTasks = this.sortTasks.bind(this);
+    this.showTasksByStatus = this.showTasksByStatus.bind(this);
+  }
+
+  /**
+   * sortuje taski alfabetycznie po task descriptions
+   * sortuje na przemian raz rosnaco, raz malejaco
+   * zmienia state.todos - [{taskDesc: "costam", done: true|false}, ...]
+   * zmienia state.sortOrder
+   */
+  sortTasks() {
+    if (this.state.sortOrder === "A to Z") {
+      this.setState({
+        todos: this.state.todos.sort((t1, t2) =>
+          t1.taskDesc.localeCompare(t2.taskDesc)
+        ),
+        sortOrder: "Z to A",
+      });
+    } else if (this.state.sortOrder === "Z to A") {
+      this.setState({
+        todos: this.state.todos.sort((t1, t2) =>
+          t2.taskDesc.localeCompare(t1.taskDesc)
+        ),
+        sortOrder: "A to Z",
+      });
+    }
   }
 
   /**
@@ -117,6 +146,16 @@ class App extends React.Component {
           Remove all tasks form the list
         </button>
         <br /> <br />
+        <TodoSorter
+          onClick={this.sortTasks}
+          butMessage={this.state.sortOrder}
+        />
+        <br />
+        <TodoFilter
+          checked={this.state.showDone}
+          onChange={this.showTasksByStatus}
+        />
+        <br />
         <TodoList
           todos={this.state.todos}
           toggleDone={this.toggleDone}
