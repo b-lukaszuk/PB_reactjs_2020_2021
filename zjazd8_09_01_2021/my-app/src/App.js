@@ -27,7 +27,6 @@ class App extends React.Component {
     this.remTaskFromList = this.remTaskFromList.bind(this);
     this.remAllTasks = this.remAllTasks.bind(this);
     this.sortTasks = this.sortTasks.bind(this);
-    this.showTasksByStatus = this.showTasksByStatus.bind(this);
   }
 
   /**
