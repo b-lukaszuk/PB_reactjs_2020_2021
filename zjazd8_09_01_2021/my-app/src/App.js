@@ -27,6 +27,16 @@ class App extends React.Component {
     this.remTaskFromList = this.remTaskFromList.bind(this);
     this.remAllTasks = this.remAllTasks.bind(this);
     this.sortTasks = this.sortTasks.bind(this);
+    this.toggleShowDone = this.toggleShowDone.bind(this);
+    this.toggleShowPending = this.toggleShowPending.bind(this);
+  }
+
+  toggleShowDone() {
+    this.setState({ showDone: !this.state.showDone });
+  }
+
+  toggleShowPending() {
+    this.setState({ showPending: !this.state.showPending });
   }
 
   /**
@@ -151,15 +161,35 @@ class App extends React.Component {
         />
         <br />
         <TodoFilter
+          filterMessage="Show Completed"
           checked={this.state.showDone}
-          onChange={this.showTasksByStatus}
+          onChange={this.toggleShowDone}
+        />
+        <TodoFilter
+          filterMessage="Show Pending"
+          checked={this.state.showPending}
+          onChange={this.toggleShowPending}
         />
         <br />
-        <TodoList
-          todos={this.state.todos}
-          toggleDone={this.toggleDone}
-          onClickButton={this.remTaskFromList}
-        />
+        {this.state.showDone && (
+          <TodoList
+            todos={this.state.todos.filter((t) => {
+              return t.done;
+            })}
+            toggleDone={this.toggleDone}
+            onClickButton={this.remTaskFromList}
+          />
+        )}
+        <br />
+        {this.state.showPending && (
+          <TodoList
+            todos={this.state.todos.filter((t) => {
+              return !t.done;
+            })}
+            toggleDone={this.toggleDone}
+            onClickButton={this.remTaskFromList}
+          />
+        )}
       </div>
     );
   };
