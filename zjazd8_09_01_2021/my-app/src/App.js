@@ -151,7 +151,7 @@ class App extends React.Component {
           onClickButton={this.addTaskToList}
         />
         <br />
-        <button onClick={this.remAllTasks}>
+        <button className="remAllBut" onClick={this.remAllTasks}>
           Remove all tasks form the list
         </button>
         <br /> <br />
@@ -171,6 +171,7 @@ class App extends React.Component {
           onChange={this.toggleShowPending}
         />
         <br />
+        <h2>Completed tasks:</h2>
         {this.state.showDone && (
           <TodoList
             todos={this.state.todos.filter((t) => {
@@ -181,6 +182,7 @@ class App extends React.Component {
           />
         )}
         <br />
+        <h2>Pending tasks:</h2>
         {this.state.showPending && (
           <TodoList
             todos={this.state.todos.filter((t) => {

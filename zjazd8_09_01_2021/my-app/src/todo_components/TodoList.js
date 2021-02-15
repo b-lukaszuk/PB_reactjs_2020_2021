@@ -27,7 +27,7 @@ class TodoList extends React.Component {
   render() {
     const todos = this.props.todos;
     return (
-      <div>
+      <div className="TodoList">
         {/* tablica, celem lepszego wyrownania elementow */}
         <table>
           <thead>

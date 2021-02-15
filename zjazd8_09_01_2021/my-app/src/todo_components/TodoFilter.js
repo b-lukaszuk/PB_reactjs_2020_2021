@@ -1,4 +1,5 @@
 import React from "react";
+import "./TodoFilter.css";
 
 class TodoFilter extends React.Component {
   constructor(props) {
@@ -9,13 +10,13 @@ class TodoFilter extends React.Component {
   render() {
     return (
       <div>
-        <span>{this.props.filterMessage} </span>
         <input
           name=""
           type="checkbox"
           checked={this.props.checked}
           onChange={() => this.props.onChange()}
-        />
+        />{" "}
+        <span>{this.props.filterMessage} </span>
       </div>
     );
   }

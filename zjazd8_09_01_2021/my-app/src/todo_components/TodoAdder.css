@@ -1,0 +1,27 @@
+button {
+    background-color: #008CBA; /* blue */
+    border: none;
+    color: white;
+    padding: 0.4em 0.8em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    height: 1.8em;
+}
+
+button:hover {
+    background-color: #008CFF; /* blue */
+    border: none;
+    color: white;
+    padding: 0.4em 0.8em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: bold;
+}

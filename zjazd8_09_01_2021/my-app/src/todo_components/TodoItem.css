@@ -1,16 +1,10 @@
-.App {
-  text-align: center;
+input[type="checkbox"] {
+    height: 2em;
+    width: 2em;
+    background-color: #eee;
 }
 
-button:hover {
-    cursor: pointer;
-}
-
-input[type="checkbox"]:hover {
-    cursor: pointer;
-}
-
-.remAllBut:hover {
+.remBut > button:hover {
     background-color: darkred; /* red */
     border: none;
     color: white;

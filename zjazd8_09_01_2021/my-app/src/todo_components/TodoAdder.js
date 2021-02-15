@@ -1,4 +1,5 @@
 import React from "react";
+import "./TodoAdder.css";
 
 class TodoAdder extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class TodoAdder extends React.Component {
       <div>
         <input
           name=""
-          placeholder="add todo..."
+          placeholder="add task description..."
           type="text"
           value={this.props.value}
           onChange={(e) => this.props.onChangeInput(e)}
