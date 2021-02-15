@@ -1,23 +1,31 @@
 
 todo_components/TodoList.js,88
 class TodoList extends React.Component Component5,88
-export default TodoList;52,1154
+export default TodoList;52,1175
+
+todo_components/TodoFilter.js,91
+class TodoFilter extends React.Component Component4,55
+export default TodoFilter;25,464
 
 todo_components/TodoAdder.js,89
-class TodoAdder extends React.Component Component3,28
-export default TodoAdder;28,551
+class TodoAdder extends React.Component Component4,54
+export default TodoAdder;29,589
+
+todo_components/TodoSorter.js,91
+class TodoSorter extends React.Component Component3,28
+export default TodoSorter;22,392
 
 todo_components/TodoItem.js,87
-class TodoItem extends React.Component Component3,28
-export default TodoItem;34,770
+class TodoItem extends React.Component Component4,53
+export default TodoItem;35,795
 
 reportWebVitals.js,66
 const reportWebVitals 1,0
 export default reportWebVitals;13,330
 
 App.js,80
-class App extends React.Component Component6,152
-export default App;130,3628
+class App extends React.Component Component8,262
+export default App;200,5768
 
 setupTests.js,0
 
