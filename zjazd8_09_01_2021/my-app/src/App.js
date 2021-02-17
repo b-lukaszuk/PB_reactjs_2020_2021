@@ -158,7 +158,7 @@ class App extends React.Component {
         />
         <br />
         <button className="remAllBut" onClick={this.remAllTasks}>
-          &#128465; Remove all tasks form the list
+          &#10006; Remove all tasks form the list
         </button>
         <br /> <br />
         <TodoSorter
