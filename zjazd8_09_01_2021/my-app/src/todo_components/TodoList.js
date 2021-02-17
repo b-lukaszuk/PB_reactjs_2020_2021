@@ -28,6 +28,7 @@ class TodoList extends React.Component {
     const todos = this.props.todos;
     return (
       <div className="TodoList">
+        <h2>{this.props.listName}</h2>
         {/* tablica, celem lepszego wyrownania elementow */}
         <table>
           <thead>

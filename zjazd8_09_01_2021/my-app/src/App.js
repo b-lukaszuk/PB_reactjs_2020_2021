@@ -158,7 +158,7 @@ class App extends React.Component {
         />
         <br />
         <button className="remAllBut" onClick={this.remAllTasks}>
-          Remove all tasks form the list
+          &#128465; Remove all tasks form the list
         </button>
         <br /> <br />
         <TodoSorter
@@ -177,9 +177,9 @@ class App extends React.Component {
           onChange={this.toggleShowPending}
         />
         <br />
-        <h2>Completed tasks:</h2>
         {this.state.showDone && (
           <TodoList
+            listName="Completed tasks:"
             todos={this.state.todos.filter((t) => {
               return t.done;
             })}
@@ -188,9 +188,9 @@ class App extends React.Component {
           />
         )}
         <br />
-        <h2>Pending tasks:</h2>
         {this.state.showPending && (
           <TodoList
+            listName="Pending tasks:"
             todos={this.state.todos.filter((t) => {
               return !t.done;
             })}
