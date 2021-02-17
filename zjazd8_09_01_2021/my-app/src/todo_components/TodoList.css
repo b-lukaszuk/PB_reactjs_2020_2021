@@ -8,7 +8,7 @@ thead {
 }
 
 td.taskDesc {
-    width: 50%;
+    width: 40%;
 }
 
 td.status {
@@ -16,11 +16,11 @@ td.status {
 }
 
 td.remBut {
-    width: 30%;
+    width: 40%;
 }
 
 th.taskDesc {
-    width: 50%;
+    width: 40%;
 }
 
 th.status {
@@ -28,7 +28,7 @@ th.status {
 }
 
 th.remBut {
-    width: 30%;
+    width: 40%;
 }
 
 .TodoList {
