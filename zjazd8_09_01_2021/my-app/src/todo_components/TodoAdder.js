@@ -1,6 +1,8 @@
 import React from "react";
 import "./TodoAdder.css";
 
+// komponenty bez stanow zawsze funkcyjnie
+
 class TodoAdder extends React.Component {
   constructor(props) {
     super(props);

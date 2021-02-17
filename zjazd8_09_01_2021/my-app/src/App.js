@@ -1,9 +1,13 @@
-import "./App.css";
 import React from "react";
 import TodoList from "./todo_components/TodoList";
 import TodoAdder from "./todo_components/TodoAdder";
 import TodoSorter from "./todo_components/TodoSorter";
 import TodoFilter from "./todo_components/TodoFilter";
+import "./App.css";
+// import bibl zew
+// import moich komp
+// import css na samym dole
+// starac sie to robic alfabetycznie
 
 class App extends React.Component {
   constructor(props) {
@@ -21,6 +25,7 @@ class App extends React.Component {
       showDone: true,
       showPending: true,
     }; // This binding is necessary to make `this` work in the callback
+    // to jest zla praktyka, daje sie fat arrowy
     this.toggleDone = this.toggleDone.bind(this);
     this.updateTaskToAdd = this.updateTaskToAdd.bind(this);
     this.addTaskToList = this.addTaskToList.bind(this);
@@ -37,6 +42,7 @@ class App extends React.Component {
   toggleShowDone() {
     this.setState({ showDone: !this.state.showDone });
   }
+  // czysty kod - polecana ksiazka
 
   /**
    * obsluga checkboxa (checked|unchecked) przy "Show Pending"
@@ -53,6 +59,8 @@ class App extends React.Component {
    */
   sortTasks() {
     if (this.state.sortOrder === "A to Z") {
+      // uwazac na set state-y, bo react moze nie zadzialac jak trzeba (doczytac)
+      // uzywac hookow zamiast set state
       this.setState({
         todos: this.state.todos.sort((t1, t2) =>
           t1.taskDesc.localeCompare(t2.taskDesc)
@@ -68,6 +76,8 @@ class App extends React.Component {
       });
     }
   }
+
+  // robert c martin - czysty kod
 
   /**
    * zmienia stan (done) danego taska

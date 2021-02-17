@@ -29,7 +29,7 @@ class TodoList extends React.Component {
     return (
       <div className="TodoList">
         <h2>{this.props.listName}</h2>
-        {/* tablica, celem lepszego wyrownania elementow */}
+        {/* tabela, celem lepszego wyrownania elementow */}
         <table>
           <thead>
             <tr>
