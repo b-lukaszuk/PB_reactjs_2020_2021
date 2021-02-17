@@ -31,10 +31,16 @@ class App extends React.Component {
     this.toggleShowPending = this.toggleShowPending.bind(this);
   }
 
+  /**
+   * obsluga checkboxa (checked|unchecked) przy "Show Done"
+   */
   toggleShowDone() {
     this.setState({ showDone: !this.state.showDone });
   }
 
+  /**
+   * obsluga checkboxa (checked|unchecked) przy "Show Pending"
+   */
   toggleShowPending() {
     this.setState({ showPending: !this.state.showPending });
   }

@@ -11,7 +11,7 @@ input[type="checkbox"]:hover {
 }
 
 .remAllBut:hover {
-    background-color: darkred; /* red */
+    background-color: red; /* red */
     border: none;
     color: white;
     padding: 0.4em 0.8em;

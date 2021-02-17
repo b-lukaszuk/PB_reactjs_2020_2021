@@ -5,7 +5,7 @@ input[type="checkbox"] {
 }
 
 .remBut > button:hover {
-    background-color: darkred; /* red */
+    background-color: red; /* red */
     border: none;
     color: white;
     padding: 0.4em 0.8em;

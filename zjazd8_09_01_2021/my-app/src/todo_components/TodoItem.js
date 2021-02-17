@@ -24,7 +24,7 @@ class TodoItem extends React.Component {
         </td>
         <td className="remBut">
           <button onClick={() => this.props.onClickButton(taskDesc)}>
-            remove
+            &#10006; remove
           </button>
         </td>
       </tr>
