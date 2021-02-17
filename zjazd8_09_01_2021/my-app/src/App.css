@@ -21,3 +21,7 @@ input[type="checkbox"]:hover {
     font-size: 1em;
     font-weight: bold;
 }
+
+button {
+    border-radius: 0.4em;
+}

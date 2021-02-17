@@ -115,6 +115,8 @@ class App extends React.Component {
     } else if (newTaskDesc.trim() === "") {
       // no empty fields allowed to add
       alert("please provide task description");
+    } else if (!newTaskDesc.trim().match(/[a-zA-Z]+/)) {
+      alert("Task description musc contain at least 1 alphabetic character");
     } else {
       this.setState({
         todos: [

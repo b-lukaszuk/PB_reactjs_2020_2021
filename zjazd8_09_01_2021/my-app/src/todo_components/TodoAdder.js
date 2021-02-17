@@ -12,7 +12,7 @@ class TodoAdder extends React.Component {
       <div>
         <input
           name=""
-          maxlength="20"
+          maxLength="18"
           placeholder="add task description..."
           type="text"
           value={this.props.value}

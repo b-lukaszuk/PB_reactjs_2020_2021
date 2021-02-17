@@ -1,6 +1,6 @@
 table {
     table-layout: fixed ;
-    width: 50%;
+    width: 60%;
 }
 
 thead {
@@ -34,6 +34,6 @@ th.remBut {
 .TodoList {
     background-color: lightblue;
     opacity: 0.7;
-    padding: 10px;
-    box-shadow: 5px 10px 20px gray;
+    padding: 1em;
+    box-shadow: 1em gray;
 }
