@@ -27,3 +27,9 @@ Zapisano na szybko, jak prowadzacy dyktowal (tez na szybko z glowy)
 > input z mozliwoscia dodawania todos-ow<br>
 > lista todos-ow<br>
 > usuwanie todosow<br>
+
+# Zadanie zaliczeniowe sem1
+
+Ta praca domow (lista todosow) byla rowniez podstawa zaliczenia sem1
+z przedmiotu 'ecosystem React'
+(dodano jeszcze wymaganie filtrowania todosow po stanie wykonania tasku)

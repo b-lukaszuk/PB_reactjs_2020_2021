@@ -7,10 +7,10 @@
 
 #################################
 ### settings for ###
-### zjazd5_26_11_2020_pd/ ###
+### sem1_zjazd5_26_11_2020_pd/ ###
 #################################
 # except for the folder
-!/zjazd5_26_11_2020_pd/
+!/sem1_zjazd5_26_11_2020_pd/
 #################################
 
 
@@ -18,24 +18,24 @@
 
 #################################
 ### settings for ###
-### zjazd8_09_01_2021/ ###
+### sem1_zjazd8_09_01_2021/ ###
 #################################
 # except for the folder
-!/zjazd8_09_01_2021/
-# ignore all files in /zjazd8_09_01_2021/
-/zjazd8_09_01_2021/*
+!/sem1_zjazd8_09_01_2021/
+# ignore all files in /sem1_zjazd8_09_01_2021/
+/sem1_zjazd8_09_01_2021/*
 # except for README.md and my-app/
-!/zjazd8_09_01_2021/README.md
-!/zjazd8_09_01_2021/my-app/
+!/sem1_zjazd8_09_01_2021/README.md
+!/sem1_zjazd8_09_01_2021/my-app/
 # ignore all files in my-app/
-/zjazd8_09_01_2021/my-app/*
+/sem1_zjazd8_09_01_2021/my-app/*
 # except for src/
-!/zjazd8_09_01_2021/my-app/src
+!/sem1_zjazd8_09_01_2021/my-app/src
 # ignore all files in src/
-/zjazd8_09_01_2021/my-app/src/*
+/sem1_zjazd8_09_01_2021/my-app/src/*
 # except for App.js, App.css, and todo_components/
-!/zjazd8_09_01_2021/my-app/src/App.js
-!/zjazd8_09_01_2021/my-app/src/App.css
-!/zjazd8_09_01_2021/my-app/src/TAGS
-!/zjazd8_09_01_2021/my-app/src/todo_components/
+!/sem1_zjazd8_09_01_2021/my-app/src/App.js
+!/sem1_zjazd8_09_01_2021/my-app/src/App.css
+!/sem1_zjazd8_09_01_2021/my-app/src/TAGS
+!/sem1_zjazd8_09_01_2021/my-app/src/todo_components/
 #################################
