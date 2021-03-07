@@ -7,10 +7,10 @@
 
 #################################
 ### settings for ###
-### sem1_zjazd5_26_11_2020_pd/ ###
+### sem1_zjazd5_26_11_2020 ###
 #################################
 # except for the folder
-!/sem1_zjazd5_26_11_2020_pd/
+!/sem1_zjazd5_26_11_2020/
 #################################
 
 
@@ -31,6 +31,9 @@
 /sem1_zjazd8_09_01_2021/my-app/*
 # except for src/
 !/sem1_zjazd8_09_01_2021/my-app/src
+# except for package.json and package-lock.json
+!/sem1_zjazd8_09_01_2021/my-app/package.json
+!/sem1_zjazd8_09_01_2021/my-app/package-lock.json
 # ignore all files in src/
 /sem1_zjazd8_09_01_2021/my-app/src/*
 # except for App.js, App.css, and todo_components/
