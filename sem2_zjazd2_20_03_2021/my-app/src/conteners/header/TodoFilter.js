@@ -1,6 +1,6 @@
 import React from "react";
 
-import Checkbox from "./Checkbox";
+import Checkbox from "../../components/Checkbox";
 // import bibl zew
 // import moich komp
 // import css na samym dole

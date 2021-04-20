@@ -1,7 +1,7 @@
 import React from "react";
 
-import Button from "./Button";
-import Checkbox from "./Checkbox";
+import Button from "../../components/Button";
+import Checkbox from "../../components/Checkbox";
 
 import "./TodoItem.css";
 // import bibl zew

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import TodoHeader from "./todo_components/TodoHeader";
-import TodoList from "./todo_components/TodoList";
+import TodoHeader from "./conteners/header/TodoHeader";
+import TodoList from "./conteners/lists/TodoList";
 
 // import bibl zew
 // import moich komp
