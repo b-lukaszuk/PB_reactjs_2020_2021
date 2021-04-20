@@ -1,218 +1,195 @@
-import React from "react";
-import TodoList from "./todo_components/TodoList";
+import React, { useState } from "react";
+
 import TodoAdder from "./todo_components/TodoAdder";
-import TodoSorter from "./todo_components/TodoSorter";
 import TodoFilter from "./todo_components/TodoFilter";
+import TodoList from "./todo_components/TodoList";
+import TodoSorter from "./todo_components/TodoSorter";
+
 import "./App.css";
 // import bibl zew
 // import moich komp
 // import css na samym dole
 // starac sie to robic alfabetycznie
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      todos: [
-        { taskDesc: "shopping", done: true },
-        { taskDesc: "work in the office", done: false },
-        { taskDesc: "react homework", done: true },
-        { taskDesc: "node.js homework", done: false },
-        { taskDesc: "washing", done: true },
-      ],
-      taskToAdd: "",
-      sortOrder: "A to Z",
-      showDone: true,
-      showPending: true,
-    }; // This binding is necessary to make `this` work in the callback
-    // to jest zla praktyka, daje sie fat arrowy
-    this.toggleDone = this.toggleDone.bind(this);
-    this.updateTaskToAdd = this.updateTaskToAdd.bind(this);
-    this.addTaskToList = this.addTaskToList.bind(this);
-    this.remTaskFromList = this.remTaskFromList.bind(this);
-    this.remAllTasks = this.remAllTasks.bind(this);
-    this.sortTasks = this.sortTasks.bind(this);
-    this.toggleShowDone = this.toggleShowDone.bind(this);
-    this.toggleShowPending = this.toggleShowPending.bind(this);
-  }
-
-  /**
-   * obsluga checkboxa (checked|unchecked) przy "Show Done"
-   */
-  toggleShowDone() {
-    this.setState({ showDone: !this.state.showDone });
-  }
-  // czysty kod - polecana ksiazka
-
-  /**
-   * obsluga checkboxa (checked|unchecked) przy "Show Pending"
-   */
-  toggleShowPending() {
-    this.setState({ showPending: !this.state.showPending });
-  }
-
-  /**
-   * sortuje taski alfabetycznie po task descriptions
-   * sortuje na przemian raz rosnaco, raz malejaco
-   * zmienia state.todos - [{taskDesc: "costam", done: true|false}, ...]
-   * zmienia state.sortOrder
-   */
-  sortTasks() {
-    if (this.state.sortOrder === "A to Z") {
-      // uwazac na set state-y, bo react moze nie zadzialac jak trzeba (doczytac)
-      // uzywac hookow zamiast set state
-      this.setState({
-        todos: this.state.todos.sort((t1, t2) =>
-          t1.taskDesc.localeCompare(t2.taskDesc)
-        ),
-        sortOrder: "Z to A",
-      });
-    } else if (this.state.sortOrder === "Z to A") {
-      this.setState({
-        todos: this.state.todos.sort((t1, t2) =>
-          t2.taskDesc.localeCompare(t1.taskDesc)
-        ),
-        sortOrder: "A to Z",
-      });
-    }
-  }
-
-  // robert c martin - czysty kod
-
-  /**
-   * zmienia stan (done) danego taska
-   * @param {string} taskDescToToggle - opis zad/tasku (taskDesc sa unikalne)
-   * zmienia state.todos - [{taskDesc: "costam", done: true|false}, ...]
-   * togglujac status done dla danego obiektu
-   */
-  toggleDone(taskDescToToggle) {
-    this.setState({
-      todos: this.state.todos.map((item) => {
-        if (item.taskDesc === taskDescToToggle) {
-          return { taskDesc: taskDescToToggle, done: !item.done };
-        } else {
-          return item;
-        }
-      }),
-    });
-  }
-
-  /**
-   * updateuje pole input z nazwa taska wpisana przez uzytkownika
-   * @param {event} e - event triggerowany przez zmiane pola input
-   */
-  updateTaskToAdd(e) {
-    this.setState({ taskToAdd: e.target.value });
-  }
-
-  /**
-   * dodaje taska z pola input do state.todos
-   * [{taskDesc: "costam", done: true|false}, ...]
-   * @param {string} newTaskDesc - nowe taskDesc do dodania
-   * taskDesc powinno byc unikalne (nie moze wyst na liscie)
-   * przydziela dodanemu taskowi domyslny status done: false
-   */
-  addTaskToList(newTaskDesc) {
-    // no duplicated tasks descriptions allowed to add
-    if (
-      Boolean(
-        this.state.todos.find((item) => {
-          return item.taskDesc === newTaskDesc.trim();
-        })
-      )
-    ) {
-      alert("the task is already on the list");
-    } else if (newTaskDesc.trim() === "") {
-      // no empty fields allowed to add
-      alert("please provide task description");
-    } else if (!newTaskDesc.trim().match(/[a-zA-Z]+/)) {
-      alert("Task description musc contain at least 1 alphabetic character");
-    } else {
-      this.setState({
-        todos: [
-          ...this.state.todos,
-          { taskDesc: newTaskDesc.trim(), done: false },
-        ],
-      });
-    }
-    this.setState({ taskToAdd: "" });
-  }
-
-  /**
-   * usuwa dany task z listy todos-ow
-   * @param {string} taskDescToRemove - opis tasku do usuniecia
-   * (taskDesc sa unikalne w obrebie state.todos)
-   * zmienia this.state.todos
-   */
-  remTaskFromList(taskDescToRemove) {
-    this.setState({
-      todos: this.state.todos.filter((item) => {
-        return item.taskDesc !== taskDescToRemove;
-      }),
-    });
-  }
-
-  /**
-   * usuwa wszystkie taski z listy this.state.todos
-   */
-  remAllTasks() {
-    this.setState({ todos: [] });
-  }
-
-  render = () => {
-    return (
-      <div>
-        <h1>Todo list</h1>
-        <TodoAdder
-          value={this.state.taskToAdd}
-          onChangeInput={this.updateTaskToAdd}
-          onClickButton={this.addTaskToList}
-        />
-        <br />
-        <button className="remAllBut" onClick={this.remAllTasks}>
-          &#10006; Remove all tasks form the list
-        </button>
-        <br /> <br />
-        <TodoSorter
-          onClick={this.sortTasks}
-          butMessage={this.state.sortOrder}
-        />
-        <br />
-        <TodoFilter
-          filterMessage="Show Completed"
-          checked={this.state.showDone}
-          onChange={this.toggleShowDone}
-        />
-        <TodoFilter
-          filterMessage="Show Pending"
-          checked={this.state.showPending}
-          onChange={this.toggleShowPending}
-        />
-        <br />
-        {this.state.showDone && (
-          <TodoList
-            listName="Completed tasks:"
-            todos={this.state.todos.filter((t) => {
-              return t.done;
-            })}
-            toggleDone={this.toggleDone}
-            onClickButton={this.remTaskFromList}
-          />
-        )}
-        <br />
-        {this.state.showPending && (
-          <TodoList
-            listName="Pending tasks:"
-            todos={this.state.todos.filter((t) => {
-              return !t.done;
-            })}
-            toggleDone={this.toggleDone}
-            onClickButton={this.remTaskFromList}
-          />
-        )}
-      </div>
+function App() {
+    const [todos, setTodos] = useState(
+        [
+            { taskDesc: "shopping", done: true },
+            { taskDesc: "work in the office", done: false },
+            { taskDesc: "react homework", done: true },
+            { taskDesc: "node.js homework", done: false },
+            { taskDesc: "washing", done: true },
+        ]
     );
-  };
+
+    const [taskToAdd, setTaskToAdd] = useState("");
+    const [sortOrder, setSortOrder] = useState("A to Z");
+    const [showDone, setShowDone] = useState(true);
+    const [showPending, setShowPending] = useState(true);
+
+    /**
+     * obsluga checkboxa (checked|unchecked) przy "Show Done"
+     */
+    const toggleShowDone = () => {
+        setShowDone(!showDone);
+    }
+    // czysty kod - polecana ksiazka
+
+    /**
+     * obsluga checkboxa (checked|unchecked) przy "Show Pending"
+     */
+    const toggleShowPending = () => {
+        setShowPending(!showPending);
+    }
+
+    /**
+     * sortuje taski alfabetycznie po task descriptions
+     * sortuje na przemian raz rosnaco, raz malejaco
+     * zmienia todos - [{taskDesc: "costam", done: true|false}, ...]
+     * zmienia sortOrder
+     */
+    const sortTasks = () => {
+        if (sortOrder === "A to Z") {
+            setTodos(todos.sort((t1, t2) =>
+                t1.taskDesc.localeCompare(t2.taskDesc)));
+            setSortOrder("Z to A");
+        } else if (sortOrder === "Z to A") {
+            setTodos(todos.sort((t1, t2) =>
+                t2.taskDesc.localeCompare(t1.taskDesc)));
+            setSortOrder("A to Z");
+        }
+    }
+
+    // polecana ksiazka
+    // Robert C. Martin - "Czysty Kod"
+    // "Clean Code: A Handbook of Agile Software Craftsmanship"
+
+    /**
+     * zmienia stan (done) danego taska
+     * @param {string} taskDescToToggle - opis zad/tasku (taskDesc sa unikalne)
+     * zmienia todos - [{taskDesc: "costam", done: true|false}, ...]
+     * togglujac status done dla danego obiektu
+     */
+    const toggleDone = (taskDescToToggle) => {
+        setTodos(todos.map((item) => {
+            if (item.taskDesc === taskDescToToggle) {
+                return { taskDesc: taskDescToToggle, done: !item.done };
+            } else {
+                return item;
+            }
+        }
+        ));
+    }
+
+    /**
+     * updateuje pole input z nazwa taska wpisana przez uzytkownika
+     * @param {event} e - event triggerowany przez zmiane pola input
+     */
+    const updateTaskToAdd = (e) => {
+        setTaskToAdd(e.target.value);
+    }
+
+    /**
+     * dodaje taska z pola input do todos
+     * [{taskDesc: "costam", done: true|false}, ...]
+     * @param {string} newTaskDesc - nowe taskDesc do dodania
+     * taskDesc powinno byc unikalne (nie moze wyst na liscie)
+     * przydziela dodanemu taskowi domyslny status done: false
+     */
+    const addTaskToList = (newTaskDesc) => {
+        // no duplicated tasks descriptions allowed to add
+        if (
+            Boolean(
+                todos.find((item) => {
+                    return item.taskDesc === newTaskDesc.trim();
+                })
+            )
+        ) {
+            alert("the task is already on the list");
+        } else if (newTaskDesc.trim() === "") {
+            // no empty fields allowed to add
+            alert("please provide task description");
+        } else if (!newTaskDesc.trim().match(/[a-zA-Z]+/)) {
+            alert("Task description musc contain at least 1 alphabetic character");
+        } else {
+            setTodos(
+                [...todos, { taskDesc: newTaskDesc.trim(), done: false }]
+            )
+        }
+        setTaskToAdd("");
+    }
+
+    /**
+     * usuwa dany task z listy todos-ow
+     * @param {string} taskDescToRemove - opis tasku do usuniecia
+     * (taskDesc sa unikalne w obrebie todos)
+     * zmienia todos
+     */
+    const remTaskFromList = (taskDescToRemove) => {
+        setTodos(todos.filter((item) => {
+            return item.taskDesc !== taskDescToRemove;
+        }));
+    }
+
+    /**
+     * usuwa wszystkie taski z listy todos
+     */
+    const remAllTasks = () => {
+        setTodos([]);
+    }
+
+    return (
+        <div>
+            <h1>Todo list</h1>
+            <TodoAdder
+                value={taskToAdd}
+                onChangeInput={updateTaskToAdd}
+                onClickButton={addTaskToList}
+            />
+            <br />
+            <button className="remAllBut" onClick={remAllTasks}>
+                &#10006; Remove all tasks form the list
+        </button>
+            <br /> <br />
+            <TodoSorter
+                onClick={sortTasks}
+                butMessage={sortOrder}
+            />
+            <br />
+            <TodoFilter
+                filterMessage="Show Completed"
+                checked={showDone}
+                onChange={toggleShowDone}
+            />
+            <TodoFilter
+                filterMessage="Show Pending"
+                checked={showPending}
+                onChange={toggleShowPending}
+            />
+            <br />
+            {showDone && (
+                <TodoList
+                    listName="Completed tasks:"
+                    todos={todos.filter((t) => {
+                        return t.done;
+                    })}
+                    toggleDone={toggleDone}
+                    onClickButton={remTaskFromList}
+                />
+            )}
+            <br />
+            {showPending && (
+                <TodoList
+                    listName="Pending tasks:"
+                    todos={todos.filter((t) => {
+                        return !t.done;
+                    })}
+                    toggleDone={toggleDone}
+                    onClickButton={remTaskFromList}
+                />
+            )}
+        </div>
+    );
 }
 
 export default App;
