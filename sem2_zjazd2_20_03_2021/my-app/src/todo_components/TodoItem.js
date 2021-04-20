@@ -1,35 +1,29 @@
 import React from "react";
 import "./TodoItem.css";
 
-class TodoItem extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log("TodoItem constructor");
-  }
+function TodoItem(props) {
 
-  render() {
-    const taskDesc = this.props.item.taskDesc;
-    const isDone = this.props.item.done;
+    const taskDesc = props.item.taskDesc;
+    const isDone = props.item.done;
     return (
-      // wstawia do tbody, wiec produkuje td
-      <tr>
-        <td className="taskDesc">{taskDesc}</td>
-        <td className="status">
-          <input
-            name=""
-            type="checkbox"
-            checked={isDone}
-            onChange={() => this.props.toggleDone(taskDesc)}
-          />
-        </td>
-        <td className="remBut">
-          <button onClick={() => this.props.onClickButton(taskDesc)}>
-            &#10006; remove
+        // wstawia do tbody, wiec produkuje td
+        <tr>
+            <td className="taskDesc">{taskDesc}</td>
+            <td className="status">
+                <input
+                    name=""
+                    type="checkbox"
+                    checked={isDone}
+                    onChange={() => props.toggleDone(taskDesc)}
+                />
+            </td>
+            <td className="remBut">
+                <button onClick={() => props.onClickButton(taskDesc)}>
+                    &#10006; remove
           </button>
-        </td>
-      </tr>
+            </td>
+        </tr>
     );
-  }
 }
 
 export default TodoItem;

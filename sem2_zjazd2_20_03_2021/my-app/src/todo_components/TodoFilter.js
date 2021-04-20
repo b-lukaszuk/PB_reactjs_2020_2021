@@ -1,25 +1,19 @@
 import React from "react";
 import "./TodoFilter.css";
 
-class TodoFilter extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log("TodoFilter constructor");
-  }
+function TodoFilter(props) {
 
-  render() {
     return (
-      <div>
-        <input
-          name=""
-          type="checkbox"
-          checked={this.props.checked}
-          onChange={() => this.props.onChange()}
-        />{" "}
-        <span>{this.props.filterMessage} </span>
-      </div>
+        <div>
+            <input
+                name=""
+                type="checkbox"
+                checked={props.checked}
+                onChange={() => props.onChange()}
+            />{" "}
+            <span>{props.filterMessage} </span>
+        </div>
     );
-  }
 }
 
 export default TodoFilter;
