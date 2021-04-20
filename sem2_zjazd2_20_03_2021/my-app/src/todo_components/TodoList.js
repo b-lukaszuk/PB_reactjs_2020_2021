@@ -13,7 +13,7 @@ function TodoList(props) {
                     <tr>
                         <th className="taskDesc">task</th>
                         <th className="status">done?</th>
-                        <th className="remBut">remove from list</th>
+                        <th>remove from list</th>
                     </tr>
                 </thead>
                 <tbody>

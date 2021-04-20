@@ -4,8 +4,9 @@ import TodoAdder from "./todo_components/TodoAdder";
 import TodoFilter from "./todo_components/TodoFilter";
 import TodoList from "./todo_components/TodoList";
 import TodoSorter from "./todo_components/TodoSorter";
+import Button from "./todo_components/Button";
 
-import "./App.css";
+// import "./App.css";
 // import bibl zew
 // import moich komp
 // import css na samym dole
@@ -147,9 +148,11 @@ function App() {
                 onClickButton={addTaskToList}
             />
             <br />
-            <button className="remAllBut" onClick={remAllTasks}>
-                &#10006; Remove all tasks form the list
-        </button>
+            <Button
+                className="remBut"
+                onClick={remAllTasks}
+                btnText={"\u2716 Remove all tasks from the list"}
+            />
             <br /> <br />
             <TodoSorter
                 onClick={sortTasks}

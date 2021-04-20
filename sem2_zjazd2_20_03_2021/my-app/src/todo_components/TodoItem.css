@@ -3,19 +3,6 @@ input[type="checkbox"] {
     width: 2em;
     background-color: #eee;
 }
-
-.remBut > button:hover {
-    background-color: red; /* red */
-    border: none;
-    color: white;
-    padding: 0.4em 0.8em;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1em;
-    font-weight: bold;
-}
-
 .taskDesc {
     font-size: 1.3em;
 }

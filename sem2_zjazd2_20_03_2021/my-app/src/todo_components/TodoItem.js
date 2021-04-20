@@ -1,8 +1,8 @@
 import React from "react";
 import "./TodoItem.css";
+import Button from "./Button";
 
 function TodoItem(props) {
-
     const taskDesc = props.item.taskDesc;
     const isDone = props.item.done;
     return (
@@ -17,10 +17,12 @@ function TodoItem(props) {
                     onChange={() => props.toggleDone(taskDesc)}
                 />
             </td>
-            <td className="remBut">
-                <button onClick={() => props.onClickButton(taskDesc)}>
-                    &#10006; remove
-          </button>
+            <td>
+                <Button
+                    className="remBut"
+                    onClick={() => props.onClickButton(taskDesc)}
+                    btnText={"\u2716 remove"}
+                />
             </td>
         </tr>
     );

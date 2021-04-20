@@ -1,5 +1,6 @@
 import React from "react";
 import "./TodoAdder.css";
+import Button from "./Button";
 
 function TodoAdder(props) {
 
@@ -14,9 +15,10 @@ function TodoAdder(props) {
                 onChange={(e) => props.onChangeInput(e)}
             />
         &nbsp;
-            <button onClick={() => props.onClickButton(props.value)}>
-                Add to the list
-        </button>
+            <Button className="normalBut"
+                onClick={() => props.onClickButton(props.value)}
+                btnText="Add to the list"
+            />
         </div>
     );
 }
