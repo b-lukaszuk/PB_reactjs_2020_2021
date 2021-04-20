@@ -42,3 +42,13 @@
 !/sem1_zjazd8_09_01_2021/my-app/src/TAGS
 !/sem1_zjazd8_09_01_2021/my-app/src/todo_components/
 #################################
+
+
+#################################
+### settings for ###
+### sem2_zjazd2_20_03_2021/ ###
+#################################
+!sem2_zjazd2_20_03_2021/
+sem2_zjazd2_20_03_2021/my-app/node_modules/*
+
+
