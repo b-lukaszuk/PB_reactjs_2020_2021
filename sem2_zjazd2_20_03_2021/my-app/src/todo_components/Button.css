@@ -11,6 +11,10 @@ button {
     font-weight: bold;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 .normalBut:hover {
     background-color: #3584e4; /* blue */
 }

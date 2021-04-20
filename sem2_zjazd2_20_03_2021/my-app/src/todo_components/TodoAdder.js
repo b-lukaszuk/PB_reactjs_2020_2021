@@ -1,16 +1,13 @@
 import React from "react";
-import "./TodoAdder.css";
 import Button from "./Button";
+import Input from "./Input";
 
 function TodoAdder(props) {
-
     return (
         <div>
-            <input
-                name=""
+            <Input
                 maxLength="18"
                 placeholder="add task description..."
-                type="text"
                 value={props.value}
                 onChange={(e) => props.onChangeInput(e)}
             />

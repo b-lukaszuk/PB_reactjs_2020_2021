@@ -1,6 +1,7 @@
 import React from "react";
 import "./TodoItem.css";
 import Button from "./Button";
+import Checkbox from "./Checkbox";
 
 function TodoItem(props) {
     const taskDesc = props.item.taskDesc;
@@ -10,9 +11,7 @@ function TodoItem(props) {
         <tr>
             <td className="taskDesc">{taskDesc}</td>
             <td className="status">
-                <input
-                    name=""
-                    type="checkbox"
+                <Checkbox
                     checked={isDone}
                     onChange={() => props.toggleDone(taskDesc)}
                 />

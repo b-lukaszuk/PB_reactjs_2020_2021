@@ -1,16 +1,14 @@
 import React from "react";
-import "./TodoFilter.css";
+import Checkbox from "./Checkbox";
 
 function TodoFilter(props) {
 
     return (
         <div>
-            <input
-                name=""
-                type="checkbox"
+            <Checkbox
                 checked={props.checked}
                 onChange={() => props.onChange()}
-            />{" "}
+            /> {" "}
             <span>{props.filterMessage} </span>
         </div>
     );
