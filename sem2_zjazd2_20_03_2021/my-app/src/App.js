@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 
-import TodoAdder from "./todo_components/TodoAdder";
-import TodoFilter from "./todo_components/TodoFilter";
+import TodoHeader from "./todo_components/TodoHeader";
 import TodoList from "./todo_components/TodoList";
-import TodoSorter from "./todo_components/TodoSorter";
-import Button from "./todo_components/Button";
 
-// import "./App.css";
 // import bibl zew
 // import moich komp
 // import css na samym dole
@@ -141,35 +137,20 @@ function App() {
 
     return (
         <div>
-            <h1>Todo list</h1>
-            <TodoAdder
-                value={taskToAdd}
-                onChangeInput={updateTaskToAdd}
-                onClickButton={addTaskToList}
+            <TodoHeader
+                adderTaskToAdd={taskToAdd}
+                adderUpdateTaskToAdd={updateTaskToAdd}
+                adderAddTaskToList={addTaskToList}
+                remAllBtnRemAllTasks={remAllTasks}
+                sorterSortTasks={sortTasks}
+                sorterSortOrder={sortOrder}
+                filter1Msg="Show Completed"
+                filter1Checked={showDone}
+                filter1OnChange={toggleShowDone}
+                filter2Msg="Show Pending"
+                filter2Checked={showPending}
+                filter2OnChange={toggleShowPending}
             />
-            <br />
-            <Button
-                className="remBut"
-                onClick={remAllTasks}
-                btnText={"\u2716 Remove all tasks from the list"}
-            />
-            <br /> <br />
-            <TodoSorter
-                onClick={sortTasks}
-                butMessage={sortOrder}
-            />
-            <br />
-            <TodoFilter
-                filterMessage="Show Completed"
-                checked={showDone}
-                onChange={toggleShowDone}
-            />
-            <TodoFilter
-                filterMessage="Show Pending"
-                checked={showPending}
-                onChange={toggleShowPending}
-            />
-            <br />
             {showDone && (
                 <TodoList
                     listName="Completed tasks:"

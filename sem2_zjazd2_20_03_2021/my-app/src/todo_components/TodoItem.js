@@ -1,7 +1,13 @@
 import React from "react";
-import "./TodoItem.css";
+
 import Button from "./Button";
 import Checkbox from "./Checkbox";
+
+import "./TodoItem.css";
+// import bibl zew
+// import moich komp
+// import css na samym dole
+// starac sie to robic alfabetycznie
 
 function TodoItem(props) {
     const taskDesc = props.item.taskDesc;

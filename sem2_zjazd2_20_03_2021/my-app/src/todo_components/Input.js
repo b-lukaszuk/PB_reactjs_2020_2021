@@ -1,5 +1,10 @@
 import React from "react";
+
 import "./Input.css";
+// import bibl zew
+// import moich komp
+// import css na samym dole
+// starac sie to robic alfabetycznie
 
 function Input(props) {
     return (

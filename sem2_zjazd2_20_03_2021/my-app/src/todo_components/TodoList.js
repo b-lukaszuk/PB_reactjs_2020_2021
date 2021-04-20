@@ -1,6 +1,11 @@
 import React from "react";
-import "./TodoList.css";
+
 import TodoItem from "./TodoItem";
+import "./TodoList.css";
+// import bibl zew
+// import moich komp
+// import css na samym dole
+// starac sie to robic alfabetycznie
 
 function TodoList(props) {
     const todos = props.todos;
@@ -30,7 +35,6 @@ function TodoList(props) {
 }
 
 export default TodoList;
-
 
 /**
  * zwraca komponent TodoItem
