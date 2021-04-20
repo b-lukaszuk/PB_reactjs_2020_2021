@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+input[type="checkbox"]:hover {
+    cursor: pointer;
+}
+
+.remAllBut:hover {
+    background-color: red; /* red */
+    border: none;
+    color: white;
+    padding: 0.4em 0.8em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+button {
+    border-radius: 0.4em;
+}
