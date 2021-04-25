@@ -28,16 +28,13 @@ function App() {
     const [showDone, setShowDone] = useState(true);
     const [showPending, setShowPending] = useState(true);
 
-
-    const pushTodosToLocalStorage = () => {
-        window.localStorage.setItem("todos", JSON.stringify(todos));
-        // console.log("todos pushed to local storage");
-    }
-
     /**
      * pushes todos to localStorage on its every change
      */
-    useEffect(() => { pushTodosToLocalStorage() }, [todos]);
+    useEffect(() => {
+        // pushes todos to local storage
+        window.localStorage.setItem("todos", JSON.stringify(todos));
+    }, [todos]);
 
     /**
      * obsluga checkboxa (checked|unchecked) przy "Show Done"
