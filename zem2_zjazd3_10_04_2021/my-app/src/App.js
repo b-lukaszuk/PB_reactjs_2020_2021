@@ -8,33 +8,54 @@ import TodoList from "./conteners/lists/TodoList";
 // import css na samym dole
 // starac sie to robic alfabetycznie
 
-function App() {
-    /**
-     * returns todos from localStorage or [] if no todos are there
-     */
-    const getTodosFromLocalStorage = () => {
-        let todos = JSON.parse(window.localStorage.getItem("todos"));
-        // if locStor does not cont todos we get null, so
-        // console.log(todos ? todos : []);
-        return todos ? todos : [];
+/**
+ * returns key from localStorage or defaultValue if no key is there
+ */
+function getKeyFromLocalStorage(key, defaultValue) {
+    let result = JSON.parse(window.localStorage.getItem(key));
+    // if locStor does not cont result we get null, so
+    // console.log(result ? result : []);
+    return result !== null ? result : defaultValue;
+}
+
+/**
+ * pushes {key: value} from dict to localStorage
+ */
+function pushDictToLocalStorage(dictionary) {
+    for (const [key, value] of Object.entries(dictionary)) {
+        window.localStorage.setItem(key, JSON.stringify(value));
     }
+}
+
+function App() {
 
     // aplication state, state consts and getters/setters
     const [todos, setTodos] = useState(
-        getTodosFromLocalStorage()
+        getKeyFromLocalStorage("todos", [])
     );
     const [taskToAdd, setTaskToAdd] = useState("");
     const [sortOrder, setSortOrder] = useState("A to Z");
-    const [showDone, setShowDone] = useState(true);
-    const [showPending, setShowPending] = useState(true);
+    const [showDone, setShowDone] = useState(
+        getKeyFromLocalStorage("showDone", true)
+    );
+    const [showPending, setShowPending] = useState(
+        getKeyFromLocalStorage("showPending", true)
+    );
 
-    /**
-     * pushes todos to localStorage on its every change
-     */
+    // pushes todos to localStorage
     useEffect(() => {
-        // pushes todos to local storage
-        window.localStorage.setItem("todos", JSON.stringify(todos));
+        pushDictToLocalStorage({ "todos": todos });
     }, [todos]);
+
+    // pushes showDone to localStorage
+    useEffect(() => {
+        pushDictToLocalStorage({ "showDone": showDone });
+    }, [showDone]);
+
+    // pushes showPending to localStorage
+    useEffect(() => {
+        pushDictToLocalStorage({ "showPending": showPending });
+    }, [showPending]);
 
     /**
      * obsluga checkboxa (checked|unchecked) przy "Show Done"
