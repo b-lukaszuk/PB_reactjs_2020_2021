@@ -34,7 +34,7 @@ function App() {
         getKeyFromLocalStorage("todos", [])
     );
     const [taskToAdd, setTaskToAdd] = useState("");
-    const [sortOrder, setSortOrder] = useState("A to Z");
+    const [sortAsc, setSortAsc] = useState(true);
     const [showDone, setShowDone] = useState(
         getKeyFromLocalStorage("showDone", true)
     );
@@ -76,17 +76,17 @@ function App() {
      * sortuje taski alfabetycznie po task descriptions
      * sortuje na przemian raz rosnaco, raz malejaco
      * zmienia todos - [{taskDesc: "costam", done: true|false}, ...]
-     * zmienia sortOrder
+     * zmienia sortAsc
      */
     const sortTasks = () => {
-        if (sortOrder === "A to Z") {
+        if (sortAsc) {
             setTodos(todos.sort((t1, t2) =>
                 t1.taskDesc.localeCompare(t2.taskDesc)));
-            setSortOrder("Z to A");
-        } else if (sortOrder === "Z to A") {
+            setSortAsc(!sortAsc);
+        } else {
             setTodos(todos.sort((t1, t2) =>
                 t2.taskDesc.localeCompare(t1.taskDesc)));
-            setSortOrder("A to Z");
+            setSortAsc(!sortAsc);
         }
     }
 
@@ -176,7 +176,7 @@ function App() {
                 adderAddTaskToList={addTaskToList}
                 remAllBtnRemAllTasks={remAllTasks}
                 sorterSortTasks={sortTasks}
-                sorterSortOrder={sortOrder}
+                sorterSortOrder={sortAsc ? "A to Z" : "Z to A"}
                 filter1Msg="Show Completed"
                 filter1Checked={showDone}
                 filter1OnChange={toggleShowDone}
