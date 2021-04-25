@@ -1,0 +1,35 @@
+table {
+    table-layout: fixed ;
+    width: 60%;
+}
+
+thead {
+    text-align: left;
+}
+
+td.taskDesc {
+    width: 40%;
+}
+
+td.status {
+    width: 20%;
+}
+
+td.remBut {
+    width: 40%;
+}
+
+th.taskDesc {
+    width: 40%;
+}
+
+th.status {
+    width: 20%;
+}
+
+.TodoList {
+    background-color: lightblue;
+    opacity: 0.7;
+    padding: 1em;
+    box-shadow: 1em gray;
+}
