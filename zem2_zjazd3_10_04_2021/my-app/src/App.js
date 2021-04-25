@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import TodoHeader from "./conteners/header/TodoHeader";
 import TodoList from "./conteners/lists/TodoList";
-
 // import bibl zew
 // import moich komp
 // import css na samym dole
@@ -19,7 +18,7 @@ function getKeyFromLocalStorage(key, defaultValue) {
 }
 
 /**
- * pushes {key: value} from dict to localStorage
+ * pushes {key1: value1, key2?: value2?, ...} from dict to localStorage
  */
 function pushDictToLocalStorage(dictionary) {
     for (const [key, value] of Object.entries(dictionary)) {
