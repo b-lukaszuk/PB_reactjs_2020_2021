@@ -19,11 +19,6 @@ function App() {
         return todos ? todos : [];
     }
 
-    const pushTodosToLocalStorage = () => {
-        window.localStorage.setItem("todos", JSON.stringify(todos));
-        // console.log("todos pushed to local storage");
-    }
-
     // aplication state, state consts and getters/setters
     const [todos, setTodos] = useState(
         getTodosFromLocalStorage()
@@ -32,6 +27,12 @@ function App() {
     const [sortOrder, setSortOrder] = useState("A to Z");
     const [showDone, setShowDone] = useState(true);
     const [showPending, setShowPending] = useState(true);
+
+
+    const pushTodosToLocalStorage = () => {
+        window.localStorage.setItem("todos", JSON.stringify(todos));
+        // console.log("todos pushed to local storage");
+    }
 
     /**
      * pushes todos to localStorage on its every change
@@ -151,10 +152,6 @@ function App() {
 
     return (
         <div>
-            <button type="button" onClick={pushTodosToLocalStorage} >
-                push todos to local storage</button>
-            <button type="button" onClick={getTodosFromLocalStorage} >
-                get todos from local storage</button>
             <TodoHeader
                 adderTaskToAdd={taskToAdd}
                 adderUpdateTaskToAdd={updateTaskToAdd}
