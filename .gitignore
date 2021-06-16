@@ -56,5 +56,12 @@ sem2_zjazd2_20_03_2021/my-app/node_modules/*
 ### settings for ###
 ### sem2_zjazd3_10_04_2021/ ###
 #################################
-!zem2_zjazd3_10_04_2021/
-zem2_zjazd3_10_04_2021/*/node_modules
+!sem2_zjazd3_10_04_2021/
+sem2_zjazd3_10_04_2021/*/node_modules
+
+#################################
+### settings for ###
+### sem2_zjazd5_24_04_2021/ ###
+#################################
+!sem2_zjazd5_24_04_2021/
+sem2_zjazd5_24_04_2021/*/node_modules
