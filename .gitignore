@@ -65,3 +65,10 @@ sem2_zjazd3_10_04_2021/*/node_modules
 #################################
 !sem2_zjazd5_24_04_2021/
 sem2_zjazd5_24_04_2021/*/node_modules
+
+#################################
+### settings for ###
+### sem2_zaliczenie/ ###
+#################################
+!sem2_zaliczenie/
+sem2_zaliczenie/*/node_modules
