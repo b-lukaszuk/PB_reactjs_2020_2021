@@ -15,6 +15,7 @@ function TodoAdder(props) {
                 placeholder="add task description..."
                 value={props.value}
                 onChange={(e) => props.onChangeInput(e)}
+                required
             />
         &nbsp;
             <Button className="normalBut"
