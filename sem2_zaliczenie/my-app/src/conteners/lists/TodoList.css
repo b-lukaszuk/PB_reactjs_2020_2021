@@ -7,7 +7,7 @@ thead {
     text-align: left;
 }
 
-td.taskDesc {
+td.name {
     width: 40%;
 }
 
@@ -19,7 +19,7 @@ td.remBut {
     width: 40%;
 }
 
-th.taskDesc {
+th.name {
     width: 40%;
 }
 

@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 
+import auth from "../../components/auth";
+import Button from "../../components/Button";
 import TodoHeader from "../header/TodoHeader";
 import TodoList from "./../lists/TodoList";
-import Button from "../../components/Button";
-import auth from "../../components/auth";
-// import bibl zew
-// import moich komp
-// import css na samym dole
-// starac sie to robic alfabetycznie
 
 /**
  * returns key from localStorage or defaultValue if no key is there
@@ -36,8 +32,8 @@ function TodosPage(props) {
     );
     const [taskToAdd, setTaskToAdd] = useState("");
     const [sortAsc, setSortAsc] = useState(true);
-    const [showDone, setShowDone] = useState(
-        getKeyFromLocalStorage("showDone", true)
+    const [showCompleted, setShowCompleted] = useState(
+        getKeyFromLocalStorage("showCompleted", true)
     );
     const [showPending, setShowPending] = useState(
         getKeyFromLocalStorage("showPending", true)
@@ -48,10 +44,10 @@ function TodosPage(props) {
         pushDictToLocalStorage({ "todos": todos });
     }, [todos]);
 
-    // pushes showDone to localStorage
+    // pushes showCompleted to localStorage
     useEffect(() => {
-        pushDictToLocalStorage({ "showDone": showDone });
-    }, [showDone]);
+        pushDictToLocalStorage({ "showCompleted": showCompleted });
+    }, [showCompleted]);
 
     // pushes showPending to localStorage
     useEffect(() => {
@@ -59,12 +55,11 @@ function TodosPage(props) {
     }, [showPending]);
 
     /**
-     * obsluga checkboxa (checked|unchecked) przy "Show Done"
+     * obsluga checkboxa (checked|unchecked) przy "Show Completed"
      */
-    const toggleShowDone = () => {
-        setShowDone(!showDone);
+    const toggleShowCompleted = () => {
+        setShowCompleted(!showCompleted);
     }
-    // czysty kod - polecana ksiazka
 
     /**
      * obsluga checkboxa (checked|unchecked) przy "Show Pending"
@@ -74,37 +69,33 @@ function TodosPage(props) {
     }
 
     /**
-     * sortuje taski alfabetycznie po task descriptions
+     * sortuje taski alfabetycznie po task name
      * sortuje na przemian raz rosnaco, raz malejaco
-     * zmienia todos - [{taskDesc: "costam", done: true|false}, ...]
+     * zmienia todos - [{id: 123, name: "costam", completed: true|false}, ...]
      * zmienia sortAsc
      */
     const sortTasks = () => {
         if (sortAsc) {
             setTodos(todos.sort((t1, t2) =>
-                t1.taskDesc.localeCompare(t2.taskDesc)));
+                t1.name.localeCompare(t2.name)));
             setSortAsc(!sortAsc);
         } else {
             setTodos(todos.sort((t1, t2) =>
-                t2.taskDesc.localeCompare(t1.taskDesc)));
+                t2.name.localeCompare(t1.name)));
             setSortAsc(!sortAsc);
         }
     }
 
-    // polecana ksiazka
-    // Robert C. Martin - "Czysty Kod"
-    // "Clean Code: A Handbook of Agile Software Craftsmanship"
-
     /**
-     * zmienia stan (done) danego taska
-     * @param {string} taskDescToToggle - opis zad/tasku (taskDesc sa unikalne)
-     * zmienia todos - [{taskDesc: "costam", done: true|false}, ...]
-     * togglujac status done dla danego obiektu
+     * zmienia stan (completed) danego taska
+     * @param {number} taskId - idTaska
+     * zmienia todos - [{id: 123, name: "costam", completed: true|false}, ...]
+     * togglujac status completed dla danego obiektu
      */
-    const toggleDone = (taskDescToToggle) => {
+    const toggleCompleted = (taskId) => {
         setTodos(todos.map((item) => {
-            if (item.taskDesc === taskDescToToggle) {
-                return { taskDesc: taskDescToToggle, done: !item.done };
+            if (item.id === taskId) {
+                return { ...item, completed: !item.completed };
             } else {
                 return item;
             }
@@ -113,38 +104,39 @@ function TodosPage(props) {
     }
 
     /**
-     * updateuje pole input z nazwa taska wpisana przez uzytkownika
+     * updateuje pole input z nazwa taska (do dodania) wpisana przez uzytkownika
      * @param {event} e - event triggerowany przez zmiane pola input
      */
     const updateTaskToAdd = (e) => {
         setTaskToAdd(e.target.value);
     }
 
+    const getFirstFreeId = (todos) => {
+        let usedIds = todos.map((todo) => { return todo.id });
+        console.log(usedIds);
+        let maxId = usedIds.length === 0 ? 0 : Math.max(...usedIds);
+        console.log(maxId);
+        return maxId + 1;
+    }
+
     /**
      * dodaje taska z pola input do todos
-     * [{taskDesc: "costam", done: true|false}, ...]
-     * @param {string} newTaskDesc - nowe taskDesc do dodania
-     * taskDesc powinno byc unikalne (nie moze wyst na liscie)
-     * przydziela dodanemu taskowi domyslny status done: false
+     * [{id: 123, name: "costam", completed: true|false}, ...]
+     * @param {string} newTaskDesc - nowe name do dodania
+     * przydziela dodanemu taskowi domyslny status completed: false
+     * przydziela dodanemu taskowi unikalne id
      */
     const addTaskToList = (newTaskDesc) => {
-        // no duplicated tasks descriptions allowed to add
-        if (
-            Boolean(
-                todos.find((item) => {
-                    return item.taskDesc === newTaskDesc.trim();
-                })
-            )
-        ) {
-            alert("the task is already on the list");
-        } else if (newTaskDesc.trim() === "") {
+        if (newTaskDesc.trim() === "") {
             // no empty fields allowed to add
             alert("please provide task description");
         } else if (!newTaskDesc.trim().match(/[a-zA-Z]+/)) {
-            alert("Task description musc contain at least 1 alphabetic character");
+            alert("Task name must contain at least 1 alphabetic character");
         } else {
-            setTodos(
-                [...todos, { taskDesc: newTaskDesc.trim(), done: false }]
+            let newId = getFirstFreeId(todos);
+            console.log("adding task, new id:", newId);
+            setTodos([...todos,
+            { id: newId, name: newTaskDesc.trim(), completed: false }]
             )
         }
         setTaskToAdd("");
@@ -152,13 +144,13 @@ function TodosPage(props) {
 
     /**
      * usuwa dany task z listy todos-ow
-     * @param {string} taskDescToRemove - opis tasku do usuniecia
-     * (taskDesc sa unikalne w obrebie todos)
+     * @param {number} idToRemove - id taska do usuniecia
+     * (id sa unikalne w obrebie todos)
      * zmienia todos
      */
-    const remTaskFromList = (taskDescToRemove) => {
+    const remTaskFromList = (idToRemove) => {
         setTodos(todos.filter((item) => {
-            return item.taskDesc !== taskDescToRemove;
+            return item.id !== idToRemove;
         }));
     }
 
@@ -187,19 +179,19 @@ function TodosPage(props) {
                 sorterSortTasks={sortTasks}
                 sorterSortOrder={sortAsc ? "A to Z" : "Z to A"}
                 filter1Msg="Show Completed"
-                filter1Checked={showDone}
-                filter1OnChange={toggleShowDone}
+                filter1Checked={showCompleted}
+                filter1OnChange={toggleShowCompleted}
                 filter2Msg="Show Pending"
                 filter2Checked={showPending}
                 filter2OnChange={toggleShowPending}
             />
-            {showDone && (
+            {showCompleted && (
                 <TodoList
                     listName="Completed tasks:"
                     todos={todos.filter((t) => {
-                        return t.done;
+                        return t.completed;
                     })}
-                    toggleDone={toggleDone}
+                    toggleCompleted={toggleCompleted}
                     onClickButton={remTaskFromList}
                 />
             )}
@@ -208,9 +200,9 @@ function TodosPage(props) {
                 <TodoList
                     listName="Pending tasks:"
                     todos={todos.filter((t) => {
-                        return !t.done;
+                        return !t.completed;
                     })}
-                    toggleDone={toggleDone}
+                    toggleCompleted={toggleCompleted}
                     onClickButton={remTaskFromList}
                 />
             )}

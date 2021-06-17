@@ -3,10 +3,6 @@ import React from "react";
 import TodoItem from "./TodoItem";
 
 import "./TodoList.css";
-// import bibl zew
-// import moich komp
-// import css na samym dole
-// starac sie to robic alfabetycznie
 
 function TodoList(props) {
     const todos = props.todos;
@@ -17,15 +13,15 @@ function TodoList(props) {
             <table>
                 <thead>
                     <tr>
-                        <th className="taskDesc">task</th>
-                        <th className="status">done?</th>
+                        <th className="name">task</th>
+                        <th className="status">completed?</th>
                         <th>remove from list</th>
                     </tr>
                 </thead>
                 <tbody>
                     {todos.map((item) => {
                         return newListItem(item,
-                            props.toggleDone,
+                            props.toggleCompleted,
                             props.onClickButton);
                     })}
                 </tbody>
@@ -39,15 +35,15 @@ export default TodoList;
 
 /**
  * zwraca komponent TodoItem
- * @param {Object} item - task postaci {taskDesc: "costam", done: true|false}
+ * @param {Object} item - task postaci {id: 123, name: "costam", completed: true|false}
  * @return komponent TodoItem
  */
-function newListItem(item, toggleDone, onClickButton) {
+function newListItem(item, toggleCompleted, onClickButton) {
     return (
         <TodoItem
-            key={item.taskDesc}
+            key={item.id}
             item={item}
-            toggleDone={toggleDone}
+            toggleCompleted={toggleCompleted}
             onClickButton={onClickButton}
         />
     );
