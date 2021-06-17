@@ -16,7 +16,13 @@ function pushDictToLocalStorage(dictionary) {
     }
 }
 
+function isKeyInLocalStorage(key) {
+    let result = JSON.parse(window.localStorage.getItem(key));
+    return result !== null;
+}
+
 export {
     getKeyFromLocalStorage,
-    pushDictToLocalStorage
+    pushDictToLocalStorage,
+    isKeyInLocalStorage
 };
