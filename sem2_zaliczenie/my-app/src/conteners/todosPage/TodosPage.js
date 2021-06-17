@@ -1,35 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
-import auth from "../../components/auth";
+import { authContext } from "../../components/AuthProvider";
 import Button from "../../components/Button";
 import TodoHeader from "../header/TodoHeader";
 import TodoList from "./../lists/TodoList";
+import {
+    getKeyFromLocalStorage,
+    pushDictToLocalStorage,
+} from "../../utils/localStorage";
 
-/**
- * returns key from localStorage or defaultValue if no key is there
- */
-function getKeyFromLocalStorage(key, defaultValue) {
-    let result = JSON.parse(window.localStorage.getItem(key));
-    // if locStor does not cont result we get null, so
-    // console.log(result ? result : []);
-    return result !== null ? result : defaultValue;
-}
+function TodosPage() {
 
-/**
- * pushes {key1: value1, key2?: value2?, ...} from dict to localStorage
- */
-function pushDictToLocalStorage(dictionary) {
-    for (const [key, value] of Object.entries(dictionary)) {
-        window.localStorage.setItem(key, JSON.stringify(value));
-    }
-}
-
-function TodosPage(props) {
+    const { logout } = useContext(authContext);
 
     // aplication state, state consts and getters/setters
-    const [todos, setTodos] = useState(
-        getKeyFromLocalStorage("todos", [])
-    );
+    const [todos, setTodos] = useState(getKeyFromLocalStorage("todos", []));
     const [taskToAdd, setTaskToAdd] = useState("");
     const [sortAsc, setSortAsc] = useState(true);
     const [showCompleted, setShowCompleted] = useState(
@@ -41,17 +26,17 @@ function TodosPage(props) {
 
     // pushes todos to localStorage
     useEffect(() => {
-        pushDictToLocalStorage({ "todos": todos });
+        pushDictToLocalStorage({ todos: todos });
     }, [todos]);
 
     // pushes showCompleted to localStorage
     useEffect(() => {
-        pushDictToLocalStorage({ "showCompleted": showCompleted });
+        pushDictToLocalStorage({ showCompleted: showCompleted });
     }, [showCompleted]);
 
     // pushes showPending to localStorage
     useEffect(() => {
-        pushDictToLocalStorage({ "showPending": showPending });
+        pushDictToLocalStorage({ showPending: showPending });
     }, [showPending]);
 
     /**
@@ -59,14 +44,14 @@ function TodosPage(props) {
      */
     const toggleShowCompleted = () => {
         setShowCompleted(!showCompleted);
-    }
+    };
 
     /**
      * obsluga checkboxa (checked|unchecked) przy "Show Pending"
      */
     const toggleShowPending = () => {
         setShowPending(!showPending);
-    }
+    };
 
     /**
      * sortuje taski alfabetycznie po task name
@@ -76,15 +61,13 @@ function TodosPage(props) {
      */
     const sortTasks = () => {
         if (sortAsc) {
-            setTodos(todos.sort((t1, t2) =>
-                t1.name.localeCompare(t2.name)));
+            setTodos(todos.sort((t1, t2) => t1.name.localeCompare(t2.name)));
             setSortAsc(!sortAsc);
         } else {
-            setTodos(todos.sort((t1, t2) =>
-                t2.name.localeCompare(t1.name)));
+            setTodos(todos.sort((t1, t2) => t2.name.localeCompare(t1.name)));
             setSortAsc(!sortAsc);
         }
-    }
+    };
 
     /**
      * zmienia stan (completed) danego taska
@@ -93,15 +76,16 @@ function TodosPage(props) {
      * togglujac status completed dla danego obiektu
      */
     const toggleCompleted = (taskId) => {
-        setTodos(todos.map((item) => {
-            if (item.id === taskId) {
-                return { ...item, completed: !item.completed };
-            } else {
-                return item;
-            }
-        }
-        ));
-    }
+        setTodos(
+            todos.map((item) => {
+                if (item.id === taskId) {
+                    return { ...item, completed: !item.completed };
+                } else {
+                    return item;
+                }
+            })
+        );
+    };
 
     /**
      * updateuje pole input z nazwa taska (do dodania) wpisana przez uzytkownika
@@ -109,15 +93,17 @@ function TodosPage(props) {
      */
     const updateTaskToAdd = (e) => {
         setTaskToAdd(e.target.value);
-    }
+    };
 
     const getFirstFreeId = (todos) => {
-        let usedIds = todos.map((todo) => { return todo.id });
+        let usedIds = todos.map((todo) => {
+            return todo.id;
+        });
         console.log(usedIds);
         let maxId = usedIds.length === 0 ? 0 : Math.max(...usedIds);
         console.log(maxId);
         return maxId + 1;
-    }
+    };
 
     /**
      * dodaje taska z pola input do todos
@@ -135,12 +121,13 @@ function TodosPage(props) {
         } else {
             let newId = getFirstFreeId(todos);
             console.log("adding task, new id:", newId);
-            setTodos([...todos,
-            { id: newId, name: newTaskDesc.trim(), completed: false }]
-            )
+            setTodos([
+                ...todos,
+                { id: newId, name: newTaskDesc.trim(), completed: false },
+            ]);
         }
         setTaskToAdd("");
-    }
+    };
 
     /**
      * usuwa dany task z listy todos-ow
@@ -149,28 +136,30 @@ function TodosPage(props) {
      * zmienia todos
      */
     const remTaskFromList = (idToRemove) => {
-        setTodos(todos.filter((item) => {
-            return item.id !== idToRemove;
-        }));
-    }
+        setTodos(
+            todos.filter((item) => {
+                return item.id !== idToRemove;
+            })
+        );
+    };
 
     /**
      * usuwa wszystkie taski z listy todos
      */
     const remAllTasks = () => {
         setTodos([]);
-    }
+    };
 
     return (
         <div>
+            <span>Welcome to TODO app </span>
             <Button
                 className="normalBut"
-                btnText="logout" onClick={() => {
-                    return auth.logout(() => {
-                        props.history.push("/");
-                    }
-                    );
-                }} />
+                btnText="logout"
+                onClick={() => {
+                    logout();
+                }}
+            />
             <TodoHeader
                 adderTaskToAdd={taskToAdd}
                 adderUpdateTaskToAdd={updateTaskToAdd}

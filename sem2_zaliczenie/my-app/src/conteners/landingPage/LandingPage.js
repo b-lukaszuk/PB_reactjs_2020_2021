@@ -1,26 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./LandingPage.css";
 import Button from "../../components/Button";
-import auth from "../../components/auth";
+import { authContext } from "../../components/AuthProvider";
 
 function LandingPage(props) {
 
     const [userName, setUserName] = useState("");
     const [userPassowrd, setUserPassword] = useState("");
 
-    console.log(auth.isAuthenticated());
+    let { login } = useContext(authContext);
 
-    let handleLogin = () => {
-        if (userName.trim() !== "" & userPassowrd.trim() === "1234") {
-            return auth.login(() => {
-                props.history.push("/todos");
-            })
+    const handleLogin = () => {
+        if (userName.trim() !== "" && userPassowrd === "1234") {
+            login();
         } else {
-            alert("Wrong UserName or Password")
-            return auth.login(() => {
-                props.history.push("/");
-            })
-
+            alert("Incorrect user name or password");
         }
     }
 

@@ -1,32 +1,37 @@
 import React from "react";
+import { useParams } from 'react-router-dom';
+import { getKeyFromLocalStorage } from "../../utils/localStorage";
 
-import Button from "../../components/Button";
-import Checkbox from "../../components/Checkbox";
+function TodoItem() {
 
-import "./TodoItem.css";
+    const { id } = useParams();
 
-function TodoItem(props) {
-    const taskName = props.item.name;
-    const isCompleted = props.item.completed;
-    const taskId = props.item.id;
+    const todoId = parseInt(id);
+    const todos = getKeyFromLocalStorage("todos", []);
+    const getTodo = (taskId, todos) => {
+        for (let i = 0; i < todos.length; i++) {
+            if (todos[i].id === taskId) {
+                return todos[i];
+            }
+        }
+        return null;
+    };
+    const todo = getTodo(todoId, todos);
+
     return (
-        // wstawia do tbody, wiec produkuje td
-        <tr>
-            <td className="name">{taskName}</td>
-            <td className="status">
-                <Checkbox
-                    checked={isCompleted}
-                    onChange={() => props.toggleCompleted(taskId)}
-                />
-            </td>
-            <td>
-                <Button
-                    className="remBut"
-                    onClick={() => props.onClickButton(taskId)}
-                    btnText={"\u2716 remove"}
-                />
-            </td>
-        </tr>
+        <div>
+            {todo === null ? (
+                <div>
+                    <p>No task of id: {todoId} found</p>
+                </div>
+            ) : (
+                    <div>
+                        <p>ID: {todo.id}</p>
+                        <p>Name: {todo.name}</p>
+                        <p>Completed: {todo.completed ? "Yes" : "No"}</p>
+                    </div>
+                )}
+        </div>
     );
 }
 

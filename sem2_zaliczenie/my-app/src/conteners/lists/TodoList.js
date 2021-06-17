@@ -1,6 +1,6 @@
 import React from "react";
 
-import TodoItem from "./TodoItem";
+import TodoRow from "./TodoRow";
 
 import "./TodoList.css";
 
@@ -15,7 +15,7 @@ function TodoList(props) {
                     <tr>
                         <th className="name">task</th>
                         <th className="status">completed?</th>
-                        <th>remove from list</th>
+                        <th className="remBut">remove from list</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,13 +34,13 @@ function TodoList(props) {
 export default TodoList;
 
 /**
- * zwraca komponent TodoItem
+ * zwraca komponent TodoRow
  * @param {Object} item - task postaci {id: 123, name: "costam", completed: true|false}
- * @return komponent TodoItem
+ * @return komponent TodoRow
  */
 function newListItem(item, toggleCompleted, onClickButton) {
     return (
-        <TodoItem
+        <TodoRow
             key={item.id}
             item={item}
             toggleCompleted={toggleCompleted}
