@@ -8,9 +8,12 @@ import "./TodoRow.css";
 
 function trimMessage(msg, noOfChars) {
     let noOfCharsToLeave = noOfChars - 3;
-    let newMsg =
-        msg.length < noOfCharsToLeave ? msg : msg.slice(0, noOfCharsToLeave);
-    return newMsg + "...";
+    if (msg.length < noOfCharsToLeave) {
+        return msg;
+    } else {
+        let newMsg = msg.slice(0, noOfCharsToLeave);
+        return newMsg + "...";
+    }
 }
 
 function TodoRow(props) {
