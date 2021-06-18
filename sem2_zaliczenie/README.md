@@ -30,10 +30,3 @@ Apka powinna miec to o czym byla mowa na cwiczeniach, tj.:
 - spelniac poprzednie (sem1) wymagania
   + filtrowanie todosow po: zakonczone, nie zakonczone, dodawanie/usuwanie todosow
   + edycja todosow (opcjonalna)
-
-> homework<br>
-> -- todo app<br>
-> input z mozliwoscia dodawania todos-ow<br>
-> lista todos-ow<br>
-> usuwanie todosow<br>
-
