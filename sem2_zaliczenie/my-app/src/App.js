@@ -6,9 +6,9 @@ import {
     Redirect,
 } from "react-router-dom";
 
-import LandingPage from "./conteners/landingPage/LandingPage";
-import TodosPage from "./conteners/todosPage/TodosPage";
-import TodoItem from "./conteners/lists/TodoItem";
+import LandingPage from "./conteners/LandingPage";
+import TodosPage from "./conteners/TodosPage";
+import TodoItem from "./conteners/todos/TodoItem";
 import { authContext, AuthProvider } from "./components/AuthProvider";
 
 export const UserContext = React.createContext({});

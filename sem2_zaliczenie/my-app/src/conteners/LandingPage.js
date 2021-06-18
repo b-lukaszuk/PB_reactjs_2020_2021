@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./LandingPage.css";
-import Button from "../../components/Button";
-import { authContext } from "../../components/AuthProvider";
+import Button from "../components/Button";
+import { authContext } from "../components/AuthProvider";
 
 function LandingPage(props) {
 

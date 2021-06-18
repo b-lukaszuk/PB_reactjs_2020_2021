@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useContext, useReducer } from "react";
 
-import { authContext } from "../../components/AuthProvider";
-import Button from "../../components/Button";
-import TodoHeader from "../header/TodoHeader";
-import TodoList from "./../lists/TodoList";
+import { authContext } from "../components/AuthProvider";
+import Button from "../components/Button";
+import TodoHeader from "./header/TodoHeader";
+import TodoList from "./todos/TodoList";
 import {
     getKeyFromLocalStorage,
     pushDictToLocalStorage,
     isKeyInLocalStorage,
-} from "../../utils/localStorage";
+} from "../utils/localStorage";
 
 function TodosPage() {
     const { logout } = useContext(authContext);

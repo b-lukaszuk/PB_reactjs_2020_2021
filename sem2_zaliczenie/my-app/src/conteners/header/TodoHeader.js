@@ -4,10 +4,6 @@ import Button from "../../components/Button";
 import TodoAdder from "./TodoAdder";
 import TodoFilter from "./TodoFilter";
 import TodoSorter from "./TodoSorter";
-// import bibl zew
-// import moich komp
-// import css na samym dole
-// starac sie to robic alfabetycznie
 
 function TodoHeader(props) {
     return (
