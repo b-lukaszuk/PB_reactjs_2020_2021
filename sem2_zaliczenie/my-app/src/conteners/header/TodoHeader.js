@@ -38,7 +38,7 @@ function TodoHeader(props) {
             />
             <br />
         </div>
-    )
+    );
 }
 
 export default TodoHeader;

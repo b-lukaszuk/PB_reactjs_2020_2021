@@ -31,14 +31,16 @@ function TodoList(props) {
                     <tr>
                         <th className="name">task</th>
                         <th className="status">completed?</th>
-                        <th >remove from list</th>
+                        <th>remove from list</th>
                     </tr>
                 </thead>
                 <tbody>
                     {todos.map((item) => {
-                        return newListItem(item,
+                        return newListItem(
+                            item,
                             props.toggleCompleted,
-                            props.onClickButton);
+                            props.onClickButton
+                        );
                     })}
                 </tbody>
             </table>

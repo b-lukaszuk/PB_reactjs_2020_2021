@@ -15,7 +15,7 @@ function TodosPage() {
 
     const todosInitialState = {
         todos: getKeyFromLocalStorage("todos", []),
-    }
+    };
 
     const todosReducer = (state, action) => {
         switch (action.type) {
@@ -25,37 +25,41 @@ function TodosPage() {
                 return { ...state, todos: [...state.todos, action.payload] };
             case "todosRemoveOne":
                 return {
-                    ...state, todos:
-                        state.todos.filter((todo) => {
-                            return todo.id !== action.todoId;
-                        })
+                    ...state,
+                    todos: state.todos.filter((todo) => {
+                        return todo.id !== action.todoId;
+                    }),
                 };
             case "todosRemoveAll":
                 return { ...state, todos: [] };
             case "todosToggleCompletedOne":
                 return {
-                    ...state, todos: state.todos.map((todo) => {
+                    ...state,
+                    todos: state.todos.map((todo) => {
                         if (todo.id === action.todoId) {
                             return { ...todo, completed: !todo.completed };
                         } else {
                             return todo;
                         }
-                    })
+                    }),
                 };
             case "todosSortAll":
                 return {
-                    ...state, todos: action.sortAsc ? state.todos.sort(
-                        (t1, t2) => t1.name.localeCompare(t2.name)
-                    ) : state.todos.sort(
-                        (t1, t2) => t2.name.localeCompare(t1.name))
+                    ...state,
+                    todos: action.sortAsc
+                        ? state.todos.sort((t1, t2) => t1.name.localeCompare(t2.name))
+                        : state.todos.sort((t1, t2) => t2.name.localeCompare(t1.name)),
                 };
             default:
                 return state;
         }
-    }
+    };
 
     const urlForTodos = "https://jsonplaceholder.typicode.com/users/1/todos";
-    const [todosState, todosDispatch] = useReducer(todosReducer, todosInitialState);
+    const [todosState, todosDispatch] = useReducer(
+        todosReducer,
+        todosInitialState
+    );
 
     useEffect(() => {
         async function fetchData() {
@@ -63,7 +67,9 @@ function TodosPage() {
             let data = await response.json();
             let modifData = data.map((item) => {
                 return {
-                    id: item.id, name: item.title, completed: item.completed
+                    id: item.id,
+                    name: item.title,
+                    completed: item.completed,
                 };
             });
             if (!isKeyInLocalStorage("todos")) {
@@ -172,7 +178,7 @@ function TodosPage() {
             let newId = getFirstFreeId(todosState.todos);
             todosDispatch({
                 type: "todosAddOne",
-                payload: { id: newId, name: newTaskDesc.trim(), completed: false }
+                payload: { id: newId, name: newTaskDesc.trim(), completed: false },
             });
         }
         setTaskToAdd("");

@@ -13,8 +13,9 @@ function TodoAdder(props) {
                 onChange={(e) => props.onChangeInput(e)}
                 required
             />
-        &nbsp;
-            <Button className="normalBut"
+      &nbsp;
+            <Button
+                className="normalBut"
                 onClick={() => props.onClickButton(props.value)}
                 btnText="Add to the list"
             />

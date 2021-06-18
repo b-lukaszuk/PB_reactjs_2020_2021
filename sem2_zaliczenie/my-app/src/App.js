@@ -14,7 +14,6 @@ import TodosPage from "./conteners/TodosPage";
 export const UserContext = React.createContext({});
 
 function App(props) {
-
     const ProtectedRoute = ({ children }) => {
         const { isAuthenticated } = React.useContext(authContext);
         if (isAuthenticated) {

@@ -6,7 +6,6 @@ import Button from "../components/Button";
 import "./LandingPage.css";
 
 function LandingPage(props) {
-
     const [userName, setUserName] = useState("");
     const [userPassowrd, setUserPassword] = useState("");
 
@@ -18,7 +17,7 @@ function LandingPage(props) {
         } else {
             alert("Incorrect user name or password");
         }
-    }
+    };
 
     return (
         <div>
@@ -32,7 +31,9 @@ function LandingPage(props) {
                             placeholder="Enter Your Name"
                             type="text"
                             value={userName}
-                            onChange={(e) => { setUserName(e.target.value) }}
+                            onChange={(e) => {
+                                setUserName(e.target.value);
+                            }}
                             required
                         />
                     </fieldset>
@@ -44,18 +45,17 @@ function LandingPage(props) {
                             type="password"
                             required
                             value={userPassowrd}
-                            onChange={(e) => { setUserPassword(e.target.value) }}
+                            onChange={(e) => {
+                                setUserPassword(e.target.value);
+                            }}
                         />
                     </fieldset>
                     <br />
                 </div>
             </div>
             <div className="container">
-                <Button
-                    className="normalBut"
-                    onClick={handleLogin}
-                    btnText="Log In"
-                />
+                <Button className="normalBut"
+                    onClick={handleLogin} btnText="Log In" />
             </div>
         </div>
     );

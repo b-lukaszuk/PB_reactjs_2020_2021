@@ -6,8 +6,9 @@ function TodoSorter(props) {
     return (
         <div>
             <span>Sort by task description</span>
-        &nbsp;
-            <Button className="normalBut"
+      &nbsp;
+            <Button
+                className="normalBut"
                 onClick={() => props.onClick()}
                 btnText={props.butMessage}
             />

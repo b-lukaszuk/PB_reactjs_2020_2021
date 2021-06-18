@@ -1,12 +1,11 @@
 import React from "react";
 
 import { getKeyFromLocalStorage } from "../../utils/localStorage";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 import "./TodoItem.css";
 
 function TodoItem() {
-
     const { id } = useParams();
 
     const todoId = parseInt(id);
@@ -30,9 +29,15 @@ function TodoItem() {
                 </div>
             ) : (
                     <div className="centered-div">
-                        <p><b>ID:</b> {todo.id}</p>
-                        <p><b>Full Name:</b> {todo.name}</p>
-                        <p><b>Completed:</b> {todo.completed ? "Yes" : "No"}</p>
+                        <p>
+                            <b>ID:</b> {todo.id}
+                        </p>
+                        <p>
+                            <b>Full Name:</b> {todo.name}
+                        </p>
+                        <p>
+                            <b>Completed:</b> {todo.completed ? "Yes" : "No"}
+                        </p>
                     </div>
                 )}
         </div>
