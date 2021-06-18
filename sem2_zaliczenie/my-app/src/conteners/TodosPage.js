@@ -11,12 +11,12 @@ import TodoHeader from "./header/TodoHeader";
 import TodoList from "./todos/TodoList";
 
 function TodosPage() {
+
     const { logout } = useContext(authContext);
 
     const todosInitialState = {
         todos: getKeyFromLocalStorage("todos", []),
     };
-
     const todosReducer = (state, action) => {
         switch (action.type) {
             case "todosLoad":
@@ -81,26 +81,26 @@ function TodosPage() {
         }
         fetchData();
     }, []);
-
-    const [taskToAdd, setTaskToAdd] = useState("");
-    const [sortAsc, setSortAsc] = useState(true);
-    const [showCompleted, setShowCompleted] = useState(
-        getKeyFromLocalStorage("showCompleted", true)
-    );
-    const [showPending, setShowPending] = useState(
-        getKeyFromLocalStorage("showPending", true)
-    );
-
     // pushes todos to localStorage
     useEffect(() => {
         pushDictToLocalStorage({ todos: todosState.todos });
     }, [todosState]);
 
+    const [taskToAdd, setTaskToAdd] = useState("");
+
+    const [sortAsc, setSortAsc] = useState(true);
+
+    const [showCompleted, setShowCompleted] = useState(
+        getKeyFromLocalStorage("showCompleted", true)
+    );
     // pushes showCompleted to localStorage
     useEffect(() => {
         pushDictToLocalStorage({ showCompleted: showCompleted });
     }, [showCompleted]);
 
+    const [showPending, setShowPending] = useState(
+        getKeyFromLocalStorage("showPending", true)
+    );
     // pushes showPending to localStorage
     useEffect(() => {
         pushDictToLocalStorage({ showPending: showPending });
