@@ -14,8 +14,8 @@ function TodosPage() {
     const { logout } = useContext(authContext);
 
     const urlForTodos = "https://jsonplaceholder.typicode.com/users/1/todos";
-    // aplication state, state consts and getters/setters
-    const [todos, setTodos] = useState(getKeyFromLocalStorage("todos"));
+    const [todos, setTodos] = useState(getKeyFromLocalStorage("todos", []));
+    console.log(todos);
 
     useEffect(() => {
         async function fetchData() {
