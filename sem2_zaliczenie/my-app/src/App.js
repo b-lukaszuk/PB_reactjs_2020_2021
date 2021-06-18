@@ -1,15 +1,15 @@
 import React from "react";
 import {
     BrowserRouter as Router,
-    Switch,
     Route,
     Redirect,
+    Switch,
 } from "react-router-dom";
 
-import LandingPage from "./conteners/LandingPage";
-import TodosPage from "./conteners/TodosPage";
-import TodoItem from "./conteners/todos/TodoItem";
 import { authContext, AuthProvider } from "./components/AuthProvider";
+import LandingPage from "./conteners/LandingPage";
+import TodoItem from "./conteners/todos/TodoItem";
+import TodosPage from "./conteners/TodosPage";
 
 export const UserContext = React.createContext({});
 

@@ -1,7 +1,9 @@
 import React from "react";
-import { useParams, useHistory } from 'react-router-dom';
+
 import { getKeyFromLocalStorage } from "../../utils/localStorage";
-import Button from "../../components/Button";
+import { useParams } from 'react-router-dom';
+
+import "./TodoItem.css";
 
 function TodoItem() {
 
@@ -18,24 +20,19 @@ function TodoItem() {
         return null;
     };
     const todo = getTodo(todoId, todos);
-    const history = useHistory();
 
     return (
-        <div>
-            <Button
-                className="normalBut"
-                btnText={" \u27fd"}
-                onClick={() => { history.replace('/todos') }} />
-            <span> Go back to todos list </span>
+        <div className="container">
+            <br /> <br />
             {todo === null ? (
-                <div>
+                <div className="centered-div">
                     <p>No task of id: {todoId} found</p>
                 </div>
             ) : (
-                    <div>
-                        <p>ID: {todo.id}</p>
-                        <p>Name: {todo.name}</p>
-                        <p>Completed: {todo.completed ? "Yes" : "No"}</p>
+                    <div className="centered-div">
+                        <p><b>ID:</b> {todo.id}</p>
+                        <p><b>Full Name:</b> {todo.name}</p>
+                        <p><b>Completed:</b> {todo.completed ? "Yes" : "No"}</p>
                     </div>
                 )}
         </div>
