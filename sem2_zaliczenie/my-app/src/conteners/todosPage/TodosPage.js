@@ -73,17 +73,17 @@ function TodosPage() {
     };
 
     /**
-     * sortuje taski alfabetycznie po task title
+     * sortuje taski alfabetycznie po task name
      * sortuje na przemian raz rosnaco, raz malejaco
-     * zmienia todos - [{id: 123, title: "costam", completed: true|false}, ...]
+     * zmienia todos - [{id: 123, name: "costam", completed: true|false}, ...]
      * zmienia sortAsc
      */
     const sortTasks = () => {
         if (sortAsc) {
-            setTodos(todos.sort((t1, t2) => t1.title.localeCompare(t2.title)));
+            setTodos(todos.sort((t1, t2) => t1.name.localeCompare(t2.name)));
             setSortAsc(!sortAsc);
         } else {
-            setTodos(todos.sort((t1, t2) => t2.title.localeCompare(t1.title)));
+            setTodos(todos.sort((t1, t2) => t2.name.localeCompare(t1.name)));
             setSortAsc(!sortAsc);
         }
     };
@@ -91,7 +91,7 @@ function TodosPage() {
     /**
      * zmienia stan (completed) danego taska
      * @param {number} taskId - idTaska
-     * zmienia todos - [{id: 123, title: "costam", completed: true|false}, ...]
+     * zmienia todos - [{id: 123, name: "costam", completed: true|false}, ...]
      * togglujac status completed dla danego obiektu
      */
     const toggleCompleted = (taskId) => {
@@ -126,8 +126,8 @@ function TodosPage() {
 
     /**
      * dodaje taska z pola input do todos
-     * [{id: 123, title: "costam", completed: true|false}, ...]
-     * @param {string} newTaskDesc - nowe title do dodania
+     * [{id: 123, name: "costam", completed: true|false}, ...]
+     * @param {string} newTaskDesc - nowe name do dodania
      * przydziela dodanemu taskowi domyslny status completed: false
      * przydziela dodanemu taskowi unikalne id
      */
