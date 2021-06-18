@@ -15,7 +15,7 @@ function TodoList(props) {
                     <tr>
                         <th className="name">task</th>
                         <th className="status">completed?</th>
-                        <th className="remBut">remove from list</th>
+                        <th >remove from list</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -18,7 +18,9 @@ function pushDictToLocalStorage(dictionary) {
 
 function isKeyInLocalStorage(key) {
     let result = JSON.parse(window.localStorage.getItem(key));
-    return result !== null;
+    let isIn = result !== null && result.length !== 0;
+    console.log("key in localstorate", result);
+    return isIn;
 }
 
 export {

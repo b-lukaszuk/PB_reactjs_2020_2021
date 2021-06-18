@@ -1,6 +1,6 @@
 table {
     table-layout: fixed ;
-    width: 50%;
+    width: 60%;
 }
 
 thead {
@@ -8,11 +8,11 @@ thead {
 }
 
 td.name {
-    width: 40%;
+    width: 30%;
 }
 
 td.status {
-    width: 10%;
+    width: 20%;
 }
 
 td.remBut {
@@ -20,15 +20,15 @@ td.remBut {
 }
 
 th.name {
-    width: 40%;
+    width: 30%;
 }
 
 th.status {
-    width: 10%;
+    width: 20%;
 }
 
 th.remBut {
-    width: 10%;
+    width: 50%;
 }
 
 .TodoList {

@@ -7,14 +7,33 @@ import TodoList from "./../lists/TodoList";
 import {
     getKeyFromLocalStorage,
     pushDictToLocalStorage,
+    isKeyInLocalStorage,
 } from "../../utils/localStorage";
 
 function TodosPage() {
-
     const { logout } = useContext(authContext);
 
+    const urlForTodos = "https://jsonplaceholder.typicode.com/users/1/todos";
     // aplication state, state consts and getters/setters
-    const [todos, setTodos] = useState(getKeyFromLocalStorage("todos", []));
+    const [todos, setTodos] = useState(getKeyFromLocalStorage("todos"));
+
+    useEffect(() => {
+        async function fetchData() {
+            let response = await fetch(urlForTodos);
+            let data = await response.json();
+            let modifData = data.map((item) => {
+                return { id: item.id, name: item.title, completed: item.completed };
+            });
+            if (!isKeyInLocalStorage("todos")) {
+                console.log("fetching todos from url");
+                setTodos(modifData);
+            } else {
+                console.log("preserving todos from localStorage");
+            }
+        }
+        fetchData();
+    }, []);
+
     const [taskToAdd, setTaskToAdd] = useState("");
     const [sortAsc, setSortAsc] = useState(true);
     const [showCompleted, setShowCompleted] = useState(
@@ -54,17 +73,17 @@ function TodosPage() {
     };
 
     /**
-     * sortuje taski alfabetycznie po task name
+     * sortuje taski alfabetycznie po task title
      * sortuje na przemian raz rosnaco, raz malejaco
-     * zmienia todos - [{id: 123, name: "costam", completed: true|false}, ...]
+     * zmienia todos - [{id: 123, title: "costam", completed: true|false}, ...]
      * zmienia sortAsc
      */
     const sortTasks = () => {
         if (sortAsc) {
-            setTodos(todos.sort((t1, t2) => t1.name.localeCompare(t2.name)));
+            setTodos(todos.sort((t1, t2) => t1.title.localeCompare(t2.title)));
             setSortAsc(!sortAsc);
         } else {
-            setTodos(todos.sort((t1, t2) => t2.name.localeCompare(t1.name)));
+            setTodos(todos.sort((t1, t2) => t2.title.localeCompare(t1.title)));
             setSortAsc(!sortAsc);
         }
     };
@@ -72,7 +91,7 @@ function TodosPage() {
     /**
      * zmienia stan (completed) danego taska
      * @param {number} taskId - idTaska
-     * zmienia todos - [{id: 123, name: "costam", completed: true|false}, ...]
+     * zmienia todos - [{id: 123, title: "costam", completed: true|false}, ...]
      * togglujac status completed dla danego obiektu
      */
     const toggleCompleted = (taskId) => {
@@ -107,8 +126,8 @@ function TodosPage() {
 
     /**
      * dodaje taska z pola input do todos
-     * [{id: 123, name: "costam", completed: true|false}, ...]
-     * @param {string} newTaskDesc - nowe name do dodania
+     * [{id: 123, title: "costam", completed: true|false}, ...]
+     * @param {string} newTaskDesc - nowe title do dodania
      * przydziela dodanemu taskowi domyslny status completed: false
      * przydziela dodanemu taskowi unikalne id
      */
@@ -117,10 +136,11 @@ function TodosPage() {
             // no empty fields allowed to add
             alert("please provide task description");
         } else if (!newTaskDesc.trim().match(/[a-zA-Z]+/)) {
-            alert("Task name must contain at least 1 alphabetic character");
+            alert("Task title must contain at least 1 alphabetic character");
         } else {
             let newId = getFirstFreeId(todos);
             console.log("adding task, new id:", newId);
+            console.log("adding task, name:", newTaskDesc);
             setTodos([
                 ...todos,
                 { id: newId, name: newTaskDesc.trim(), completed: false },

@@ -6,6 +6,13 @@ import Checkbox from "../../components/Checkbox";
 
 import "./TodoRow.css";
 
+function trimMessage(msg, noOfChars) {
+    let noOfCharsToLeave = noOfChars - 3;
+    let newMsg =
+        msg.length < noOfCharsToLeave ? msg : msg.slice(0, noOfCharsToLeave);
+    return newMsg + "...";
+}
+
 function TodoRow(props) {
     const taskName = props.item.name;
     const isCompleted = props.item.completed;
@@ -17,8 +24,8 @@ function TodoRow(props) {
                 <Link to={`/todos/${todoId}`}>
                     <span title="click to see details">&#9432;</span>
                 </Link>
-	    &nbsp;&nbsp;
-                {taskName}
+        &nbsp;&nbsp;
+        {trimMessage(taskName, 20)}
             </td>
             <td className="status">
                 <Checkbox
