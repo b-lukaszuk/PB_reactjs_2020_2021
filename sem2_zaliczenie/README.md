@@ -29,7 +29,7 @@ tylko w 1 miejscu) bedzie to zrobic w useEffect]
 	+ [info o fetchData i useMemo 2](https://kyleshevlin.com/debounce-and-throttle-callbacks-with-react-hooks)
 - uzywac useReducer-ow
 - miec nawigacje
-  + strona logowania
+  + strona logowania (haslo: rok kanonizacji Dominika Guzmana przez papieza Grzegorza IX)
   + podstawowa autoryzaca
   + nie wpuszczanie nie zalogowanych userow
   + powrot do strony logowania
