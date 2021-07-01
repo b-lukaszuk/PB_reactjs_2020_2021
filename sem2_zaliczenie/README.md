@@ -20,8 +20,8 @@ Apka powinna miec to o czym byla mowa na cwiczeniach, tj.:
 - uzywac useState-ow 
 - uzywac useMemo (opcjonalne, jesli bedzie taka potrzeba)
 - uzywac useEffect-ow (localStorage)
-- uzywac wlasnych Hookow
-[do zrobienia, tylko custom hook przy fetch API wymagalby useMemo
+- uzywac wlasnych Hookow (jesli bedzie taka potrzeba)
+[moznaby to zrobic, tylko custom hook przy fetch API wymagalby useMemo
 (opcjonalne, patrz wyzej), prosciej (mniej kodu + i tak jest to uzyte
 tylko w 1 miejscu) bedzie to zrobic w useEffect]
 	+ [info o useMemo](https://medium.com/@shaymalchi/understanding-reacts-usememo-hook-through-a-simple-example-ea05b78075e9)
