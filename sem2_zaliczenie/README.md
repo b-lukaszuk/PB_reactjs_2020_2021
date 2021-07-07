@@ -36,3 +36,13 @@ tylko w 1 miejscu) bedzie to zrobic w useEffect]
 - spelniac poprzednie (sem1) wymagania
   + filtrowanie todosow po: zakonczone, nie zakonczone, dodawanie/usuwanie todosow
   + edycja todosow (opcjonalna)
+
+# Uwagi
+
+- Po zalogowaniu (jesli lista todosow jest pusta) strona pobiera sztuczne todosy z:
+https://jsonplaceholder.typicode.com/users/1/todos
+
+- strona wykorzystuje [localStorage](https://developer.mozilla.org/pl/docs/Web/API/Window/localStorage) do przechowywania/odczytywania todosow
+
+## Do użytku własnego, nie powinno być używane przez nikogo innego.
+## For personal use only, should not be used by anyone else.
