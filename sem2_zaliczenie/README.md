@@ -1,3 +1,7 @@
+# Wersja online
+
+**Deployed version ->** [Here](https://b-lukaszuk.github.io/todosApp/#/)
+
 # Reminder
 
 Utworzono za: https://create-react-app.dev/docs/getting-started/ komendami
